@@ -9,7 +9,6 @@ export class UserFormContainer extends React.Component<{}, {}> {
     render() {
         return (
             <div className="UserFormContainer">
-                <h1 className={"UserFormContainer-title"}>はてなブックマーク検索</h1>
                 <UserForm onSubmit={this.onSubmit} />
             </div>
         );
