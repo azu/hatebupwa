@@ -38,5 +38,14 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "proxy": {
+    "/hatebu": {
+      "target": "http://b.hatena.ne.jp",
+      "pathRewrite": {
+        "^/hatebu": ""
+      },
+      "changeOrigin": true
+    }
   }
 }
