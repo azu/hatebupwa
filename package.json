@@ -1,0 +1,41 @@
+{
+  "name": "hatebu-pwa",
+  "version": "0.1.0",
+  "description": "Hatena Bookmark search app.",
+  "private": true,
+  "scripts": {
+    "build": "react-scripts-ts build",
+    "precommit": "lint-staged",
+    "postcommit": "git reset",
+    "eject": "react-scripts-ts eject",
+    "start": "react-scripts-ts start",
+    "test": "react-scripts-ts test --env=jsdom",
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": false,
+    "tabWidth": 4
+  },
+  "dependencies": {
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-scripts-ts": "2.14.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^22.2.2",
+    "@types/node": "^9.6.2",
+    "@types/react": "^16.3.5",
+    "@types/react-dom": "^16.0.4",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.4",
+    "prettier": "^1.11.1",
+    "typescript": "^2.8.1"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}
