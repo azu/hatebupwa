@@ -1,0 +1,12 @@
+.UserForm-body {
+    display: flex;
+    align-items: center;
+}
+
+.UserForm-textField {
+    flex: 1;
+}
+
+.UserForm-submitButton {
+    flex-shrink: 1;
+}

@@ -1,0 +1,9 @@
+.UserFormContainer {
+    max-width: 540px;
+    margin: auto;
+    padding: 0 1rem;
+}
+
+.UserFormContainer-title {
+    font-size: 1.5rem;
+}

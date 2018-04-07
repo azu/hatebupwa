@@ -1,0 +1,30 @@
+.HatebuSearchList-body {
+    margin-top: 0.3rem;
+}
+
+.HatebuSearchListItem-body {
+    border: 1px #ddd solid;
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem 0.3rem;
+}
+
+.HatebuSearchListItem-tag {
+    border-left: 1px #ddd solid;
+    border-right: 1px #ddd solid;
+    padding: 0 0.3rem;
+    flex: 2;
+    text-align: left;
+}
+
+.HatebuSearchListItem-description {
+    padding: 0 0.3rem;
+    flex: 7;
+    text-align: left;
+}
+
+.HatebuSearchListItem-timestamp {
+    padding: 0 0.3rem;
+    flex: 1;
+    text-align: right;
+}
