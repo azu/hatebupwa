@@ -22,6 +22,8 @@
     "@types/prop-types": "^15.5.2",
     "@uifabric/icons": "^5.7.0",
     "@uirouter/react": "^0.6.2",
+    "almin": "^0.16.0",
+    "almin-logger": "^6.1.5",
     "office-ui-fabric-react": "^5.79.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",

@@ -3,6 +3,7 @@ import * as ReactDOM from "react-dom";
 import registerServiceWorker from "./registerServiceWorker";
 import { initializeIcons } from "@uifabric/icons";
 import { App } from "./container/App";
+import { Provider } from "./Context";
 // Register icons and pull the fonts from the default SharePoint cdn:
 initializeIcons();
 
@@ -13,5 +14,10 @@ function requireAll(r: any) {
 
 requireAll((require as any).context("./", true, /\.css$/));
 
-ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+ReactDOM.render(
+    <Provider>
+        <App />
+    </Provider>,
+    document.getElementById("root") as HTMLElement
+);
 registerServiceWorker();
