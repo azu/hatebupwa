@@ -1,7 +1,8 @@
 import { ComponentType, PureComponent, ReactNode } from "react";
+import * as React from "react";
 import { Context } from "almin";
 // TODO: extends https://github.com/DefinitelyTyped/DefinitelyTyped/pull/24780
-declare namespace React {
+declare namespace ReactModified {
     // Context Api
     type ReactContextProvider<T> = ComponentType<{ value: T }>;
     type ReactContextConsumer<T> = ComponentType<{ children: (value: T) => ReactNode }>;
@@ -21,7 +22,7 @@ declare namespace React {
  */
 export type $PropertyType<T, K extends keyof T> = T[K];
 
-let StateContext: null | React.ReactContext<any> = null;
+let StateContext: null | ReactModified.ReactContext<any> = null;
 // Provider
 export type ProviderProps = {
     inject?: any;
@@ -40,7 +41,7 @@ export type SubscribeProps<T, StateName> = {
 
 export function createContext<T>(context: Context<T>) {
     const initialState = context.getState();
-    StateContext = React.createContext(initialState);
+    StateContext = (React as any).createContext(initialState);
 
     // Provider
     class Provider extends PureComponent<ProviderProps> {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FocusZone, FocusZoneDirection, List, TextField } from "office-ui-fabric-react";
+import { FocusZone, FocusZoneDirection, FocusZoneTabbableElements, List, TextField } from "office-ui-fabric-react";
 
 export interface HatebuSearchListProps {
     items: any[];
@@ -41,7 +41,11 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
             items.length === originalItems.length ? "" : ` (${items.length} of ${originalItems.length} shown)`;
 
         return (
-            <FocusZone direction={FocusZoneDirection.vertical} allowTabKey={true} className={"HatebuSearchList"}>
+            <FocusZone
+                direction={FocusZoneDirection.vertical}
+                handleTabKey={FocusZoneTabbableElements.all}
+                className={"HatebuSearchList"}
+            >
                 <TextField
                     className={"HatebuSearchList-searchBox"}
                     iconProps={{

@@ -11,11 +11,15 @@ export class App extends React.Component {
                 <h1 className={"App-title"}>はてなブックマーク検索</h1>
                 <Consumer>
                     {state => {
-                        return <UserFormContainer />;
+                        console.log(state);
+                        return (
+                            <>
+                                <UserFormContainer />
+                                <SearchContainer />
+                            </>
+                        );
                     }}
                 </Consumer>
-                <UserFormContainer />
-                <SearchContainer />
             </div>
         );
     }
