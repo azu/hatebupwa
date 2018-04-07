@@ -2,6 +2,7 @@
   "name": "hatebu-pwa",
   "version": "0.1.0",
   "description": "Hatena Bookmark search app.",
+  "homepage": "https://hatebupwa.netlify.com/",
   "private": true,
   "scripts": {
     "build": "react-scripts-ts build",
