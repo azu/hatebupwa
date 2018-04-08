@@ -13,6 +13,8 @@ export class UserFormContainer extends React.Component<UserFormContainerProps, {
     private onSubmit = async (userName: string) => {
         try {
             await context.useCase(createCreateHatebuUserUseCase()).executor(useCase => useCase.execute(userName));
+            // TODO: FIXME
+            history.pushState({}, userName, `/user/${encodeURIComponent(userName)}`);
             await context.useCase(createFetchHatenaBookmarkUseCase()).executor(useCase => useCase.execute(userName));
         } catch (error) {
             console.error(error);
