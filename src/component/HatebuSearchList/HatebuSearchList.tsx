@@ -104,6 +104,7 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
                 className={"HatebuSearchList"}
             >
                 <TextField
+                    inputClassName={"HatebuSearchList-searchBoxInput"}
                     className={"HatebuSearchList-searchBox"}
                     iconProps={{
                         iconName: "Filter"

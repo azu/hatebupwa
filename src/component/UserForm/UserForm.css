@@ -10,3 +10,8 @@
 .UserForm-submitButton {
     flex-shrink: 1;
 }
+
+.UserForm-textFieldInput {
+    /* iOS zoom disabling size*/
+    font-size: 16px;
+}

@@ -22,6 +22,7 @@ export class UserForm extends React.Component<UserFormProps, {}> {
                 <Label className={"UserForm-label"}>Input your hatena user name</Label>
                 <div className={"UserForm-body"}>
                     <TextField
+                        inputClassName={"UserForm-textFieldInput"}
                         className={"UserForm-textField"}
                         value={this.props.userName}
                         autoComplete="off"
