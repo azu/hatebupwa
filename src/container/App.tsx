@@ -28,7 +28,7 @@ export class App extends React.Component {
                         {state => {
                             return (
                                 <>
-                                    <UserFormContainer />
+                                    <UserFormContainer userFormContainer={state.userFormContainer} />
                                     <SearchContainer searchContainer={state.searchContainer} />
                                 </>
                             );

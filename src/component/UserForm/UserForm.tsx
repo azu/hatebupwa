@@ -3,6 +3,7 @@ import { Label, PrimaryButton, TextField } from "office-ui-fabric-react";
 import { FormEvent } from "react";
 
 export interface UserFormProps {
+    userName?: string;
     onSubmit: (name: string) => void;
 }
 
@@ -22,7 +23,7 @@ export class UserForm extends React.Component<UserFormProps, {}> {
                 <div className={"UserForm-body"}>
                     <TextField
                         className={"UserForm-textField"}
-                        name="example"
+                        value={this.props.userName}
                         autoComplete="off"
                         ref={c => (this.textField = c)}
                     />

@@ -6,10 +6,10 @@ import { createFetchHatenaBookmarkUseCase } from "../../use-case/FetchHatenaBook
 import { UserFormContainerState } from "./UserFormContainerStore";
 
 export interface UserFormContainerProps {
-    UserFormContainer: UserFormContainerState;
+    userFormContainer: UserFormContainerState;
 }
 
-export class UserFormContainer extends React.Component<{}, {}> {
+export class UserFormContainer extends React.Component<UserFormContainerProps, {}> {
     private onSubmit = async (userName: string) => {
         try {
             await context.useCase(createCreateHatebuUserUseCase()).executor(useCase => useCase.execute(userName));
@@ -22,7 +22,7 @@ export class UserFormContainer extends React.Component<{}, {}> {
     render() {
         return (
             <div className="UserFormContainer">
-                <UserForm onSubmit={this.onSubmit} />
+                <UserForm onSubmit={this.onSubmit} userName={this.props.userFormContainer.name} />
             </div>
         );
     }
