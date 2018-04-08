@@ -4,5 +4,5 @@ Hatena Bookmark search app.
 
 ## Usage
 
-Open http://hatebupwa.netlify.com/
+Open https://hatebupwa.netlify.com/
 
