@@ -52,7 +52,8 @@
   },
   "resolutions": {
     "@types/react": "16.3.5",
-    "@types/react-dom": "16.0.4"
+    "@types/react-dom": "16.0.4",
+    "fsevents": "^1.1.2"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [
