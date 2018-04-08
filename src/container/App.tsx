@@ -8,18 +8,19 @@ import { Route, Router } from "react-routing-resolver";
 
 export class App extends React.Component {
     private onUserNameMatch = (args: { name: string }) => {
-        console.log(args);
+        context.useCase(createInitializeSystemUseCase()).executor(useCase => useCase.execute(args.name));
     };
 
-    componentDidMount() {
+    private onMatchOther = () => {
         context.useCase(createInitializeSystemUseCase()).executor(useCase => useCase.execute());
-    }
+    };
 
     render() {
         return (
             <>
                 <Router currentPath={location.pathname}>
-                    <Route pattern={"/"} onMatch={this.onUserNameMatch} />
+                    <Route pattern={"/user/:name"} onMatch={this.onUserNameMatch} />
+                    <Route pattern={"*"} onMatch={this.onMatchOther} />
                 </Router>
                 <div className="App">
                     <h1 className={"App-title"}>はてなブックマーク検索</h1>

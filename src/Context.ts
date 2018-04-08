@@ -15,7 +15,11 @@ export const AppStoreGroup = new StoreGroup({
 });
 
 export const context = new Context({
-    store: AppStoreGroup
+    store: AppStoreGroup,
+    options: {
+        strict: true,
+        performanceProfile: true
+    }
 });
 
 if (process.env.NODE_ENV !== "production") {
