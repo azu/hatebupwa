@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "はてブ検索",
+  "name": "はてなブックマーク検索PWA",
   "icons": [
     {
       "src": "favicon.ico",
