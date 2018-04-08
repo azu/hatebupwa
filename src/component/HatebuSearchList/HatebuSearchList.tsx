@@ -101,7 +101,7 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
                     iconProps={{
                         iconName: "Filter"
                     }}
-                    label={"Filter by name" + resultCountText}
+                    label={"Filter by words" + resultCountText}
                     onBeforeChange={this.onFilterChanged}
                 />
                 <List className={"HatebuSearchList-body"} items={items} onRenderCell={this.onRenderCell} />
