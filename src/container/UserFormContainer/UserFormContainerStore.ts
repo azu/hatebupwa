@@ -1,13 +1,19 @@
 import { Payload, Store } from "almin";
+import { HatebuRepository } from "../../infra/repository/HatebuRepository";
+import { SwitchCurrentHatebuUserUseCasePayload } from "../../use-case/SwitchCurrentHatebuUserUseCase";
 
 export interface UserFormContainerState {
     name?: string;
 }
 
+export interface UserFormContainerStoreArgs {
+    hatebuRepository: HatebuRepository;
+}
+
 export class UserFormContainerStore extends Store<UserFormContainerState> {
     state: UserFormContainerState;
 
-    constructor() {
+    constructor(private args: UserFormContainerStoreArgs) {
         super();
         this.state = {
             name: undefined
@@ -18,5 +24,15 @@ export class UserFormContainerStore extends Store<UserFormContainerState> {
         return this.state;
     }
 
-    receivePayload(payload: Payload): void {}
+    receivePayload(payload: Payload): void {
+        if (payload instanceof SwitchCurrentHatebuUserUseCasePayload) {
+            const hatebu = this.args.hatebuRepository.findByUserName(payload.userName);
+            if (!hatebu) {
+                return;
+            }
+            this.setState({
+                name: hatebu.name
+            });
+        }
+    }
 }

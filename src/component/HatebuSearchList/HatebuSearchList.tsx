@@ -11,8 +11,9 @@ export interface HatebuSearchListState {
 }
 
 export interface HatebuSearchListItemProps {
-    tag: string;
-    description: string;
+    title: string;
+    url: string;
+    comment: string;
     timeStamp: string;
 }
 
@@ -20,8 +21,12 @@ export const HatebuSearchListItem = (item: HatebuSearchListItemProps) => {
     return (
         <div className={"HatebuSearchListItem"} data-is-focusable={true}>
             <div className="HatebuSearchListItem-body">
-                <div className="HatebuSearchListItem-description">{item.description}</div>
-                <div className="HatebuSearchListItem-tag">{item.tag}</div>
+                <div className={"HatebuSearchListItem-main"}>
+                    <div className="HatebuSearchListItem-title">
+                        <a href={item.url}>{item.title}</a>
+                    </div>
+                    <div className="HatebuSearchListItem-description">{item.comment}</div>
+                </div>
                 <div className="HatebuSearchListItem-timestamp">{item.timeStamp}</div>
             </div>
         </div>
@@ -64,7 +69,7 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
 
         this.setState({
             filterText: text,
-            items: text ? items.filter(item => item.description.toLowerCase().indexOf(text.toLowerCase()) >= 0) : items
+            items: text ? items.filter(item => item.title.toLowerCase().indexOf(text.toLowerCase()) >= 0) : items
         });
     };
 

@@ -3,10 +3,15 @@ import { UserFormContainerStore } from "./container/UserFormContainer/UserFormCo
 import { SearchContainerStore } from "./container/SearchContainer/SearchContainerStore";
 import { AlminLogger } from "almin-logger";
 import { createContext } from "./AlminContext";
+import { hatebuRepository } from "./infra/repository/HatebuRepository";
 
 export const AppStoreGroup = new StoreGroup({
-    userFormContainer: new UserFormContainerStore(),
-    searchContainer: new SearchContainerStore()
+    userFormContainer: new UserFormContainerStore({
+        hatebuRepository
+    }),
+    searchContainer: new SearchContainerStore({
+        hatebuRepository
+    })
 });
 
 export const context = new Context({

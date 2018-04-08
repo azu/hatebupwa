@@ -1,19 +1,16 @@
 import * as React from "react";
 import { HatebuSearchList } from "../../component/HatebuSearchList/HatebuSearchList";
+import { SearchContainerState } from "./SearchContainerStore";
 
-export class SearchContainer extends React.Component<{}, {}> {
+export interface SearchContainerProps {
+    searchContainer: SearchContainerState;
+}
+
+export class SearchContainer extends React.Component<SearchContainerProps, {}> {
     render() {
         return (
             <div className="SearchContainer">
-                <HatebuSearchList
-                    items={Array.from(new Array(100000).fill(0), (_e, i) => i).map(item => {
-                        return {
-                            tag: "tag " + item,
-                            description: `text ${item}`,
-                            timeStamp: "date"
-                        };
-                    })}
-                />
+                <HatebuSearchList items={this.props.searchContainer.items} />
             </div>
         );
     }
