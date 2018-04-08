@@ -8,6 +8,7 @@ import {
     TextField
 } from "office-ui-fabric-react";
 import { HatebuSearchListItem } from "../../container/SearchContainer/SearchContainerStore";
+import { KeyboardEvent } from "react";
 
 const debouncePromise = require("debounce-promise");
 
@@ -39,9 +40,15 @@ export interface HatebuSearchListItemProps extends HatebuSearchListItem {
     filterWords: string[];
 }
 
-export const HatebuSearchListItemC = (item: HatebuSearchListItemProps) => {
+export const HatebuSearchListItemComponent = (item: HatebuSearchListItemProps) => {
+    const onKeyPress = (event: KeyboardEvent<any>) => {
+        if (event.key === "Enter") {
+            window.open(item.url);
+        }
+    };
+
     return (
-        <div className={"HatebuSearchListItem"} data-is-focusable={true}>
+        <div className={"HatebuSearchListItem"} data-is-focusable={true} onKeyDown={onKeyPress}>
             <div className="HatebuSearchListItem-body">
                 <div className={"HatebuSearchListItem-main"}>
                     <div className="HatebuSearchListItem-title">
@@ -126,6 +133,6 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
     }, 100);
 
     private onRenderCell = (item: any, index: number | undefined): JSX.Element => {
-        return <HatebuSearchListItemC {...item} filterWords={this.state.filterWords} />;
+        return <HatebuSearchListItemComponent {...item} filterWords={this.state.filterWords} />;
     };
 }
