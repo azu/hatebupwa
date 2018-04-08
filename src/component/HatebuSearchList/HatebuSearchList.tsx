@@ -1,33 +1,69 @@
 import * as React from "react";
-import { FocusZone, FocusZoneDirection, FocusZoneTabbableElements, List, TextField } from "office-ui-fabric-react";
+import {
+    FocusZone,
+    FocusZoneDirection,
+    FocusZoneTabbableElements,
+    Link,
+    List,
+    TextField
+} from "office-ui-fabric-react";
+import { HatebuSearchListItem } from "../../container/SearchContainer/SearchContainerStore";
+
+const debouncePromise = require("debounce-promise");
+
+const Highlighter = require("react-highlight-words");
+// const greenlet = require("greenlet").default;
+
+type FilterItemsType = (filterWords: string[], items: HatebuSearchListItem[]) => Promise<HatebuSearchListItem[]>;
+const filterItems: FilterItemsType = async (filterWords: string[], items: HatebuSearchListItem[]) => {
+    const test = (text: string): boolean => {
+        return filterWords.some(word => {
+            return text.toLowerCase().indexOf(word.toLowerCase()) !== -1;
+        });
+    };
+    return items.filter(item => {
+        return test(item.comment) || test(item.title) || test(item.url);
+    });
+};
 
 export interface HatebuSearchListProps {
-    items: any[];
+    items: HatebuSearchListItem[];
 }
 
 export interface HatebuSearchListState {
-    filterText?: string;
-    items?: any[];
+    filterWords: string[];
+    items: HatebuSearchListItem[];
 }
 
-export interface HatebuSearchListItemProps {
-    title: string;
-    url: string;
-    comment: string;
-    timeStamp: string;
+export interface HatebuSearchListItemProps extends HatebuSearchListItem {
+    filterWords: string[];
 }
 
-export const HatebuSearchListItem = (item: HatebuSearchListItemProps) => {
+export const HatebuSearchListItemC = (item: HatebuSearchListItemProps) => {
     return (
         <div className={"HatebuSearchListItem"} data-is-focusable={true}>
             <div className="HatebuSearchListItem-body">
                 <div className={"HatebuSearchListItem-main"}>
                     <div className="HatebuSearchListItem-title">
-                        <a href={item.url}>{item.title}</a>
+                        <Link href={item.url} data-is-focusable={false}>
+                            <Highlighter
+                                highlightClassName="YourHighlightClass"
+                                searchWords={item.filterWords}
+                                autoEscape={true}
+                                textToHighlight={item.title}
+                            />
+                        </Link>
                     </div>
-                    <div className="HatebuSearchListItem-description">{item.comment}</div>
+                    <div className="HatebuSearchListItem-description">
+                        <Highlighter
+                            highlightClassName="YourHighlightClass"
+                            searchWords={item.filterWords}
+                            autoEscape={true}
+                            textToHighlight={item.comment}
+                        />
+                    </div>
                 </div>
-                <div className="HatebuSearchListItem-timestamp">{item.timeStamp}</div>
+                <div className="HatebuSearchListItem-timestamp">{item.date.date.toUTCString()}</div>
             </div>
         </div>
     );
@@ -35,9 +71,18 @@ export const HatebuSearchListItem = (item: HatebuSearchListItemProps) => {
 
 export class HatebuSearchList extends React.Component<HatebuSearchListProps, HatebuSearchListState> {
     state = {
-        filterText: undefined,
+        filterWords: [],
         items: this.props.items
     };
+
+    static getDerivedStateFromProps(nextProps: HatebuSearchListProps, prevState: HatebuSearchListState) {
+        if (nextProps.items !== prevState.items) {
+            return {
+                items: nextProps.items
+            };
+        }
+        return null;
+    }
 
     public render() {
         const { items: originalItems } = this.props;
@@ -64,16 +109,23 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
         );
     }
 
-    private onFilterChanged = (text: string) => {
+    private onFilterChanged = debouncePromise((text: string) => {
         const { items } = this.props;
-
-        this.setState({
-            filterText: text,
-            items: text ? items.filter(item => item.title.toLowerCase().indexOf(text.toLowerCase()) >= 0) : items
+        const filterWords = text.split(/\s/);
+        return filterItems(filterWords, items).then(items => {
+            return new Promise(resolve => {
+                this.setState(
+                    {
+                        filterWords: filterWords,
+                        items: items
+                    },
+                    resolve
+                );
+            });
         });
-    };
+    }, 100);
 
     private onRenderCell = (item: any, index: number | undefined): JSX.Element => {
-        return <HatebuSearchListItem {...item} />;
+        return <HatebuSearchListItemC {...item} filterWords={this.state.filterWords} />;
     };
 }
