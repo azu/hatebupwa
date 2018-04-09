@@ -11,21 +11,9 @@ import { HatebuSearchListItem } from "../../container/SearchContainer/SearchCont
 import { KeyboardEvent } from "react";
 
 const debouncePromise = require("debounce-promise");
-
 const Highlighter = require("react-highlight-words");
-// const greenlet = require("greenlet").default;
-
-type FilterItemsType = (filterWords: string[], items: HatebuSearchListItem[]) => Promise<HatebuSearchListItem[]>;
-const filterItems: FilterItemsType = async (filterWords: string[], items: HatebuSearchListItem[]) => {
-    const test = (text: string): boolean => {
-        return filterWords.some(word => {
-            return text.toLowerCase().indexOf(word.toLowerCase()) !== -1;
-        });
-    };
-    return items.filter(item => {
-        return test(item.comment) || test(item.title) || test(item.url);
-    });
-};
+const WebworkerPromise = require("webworker-promise");
+const worker = new WebworkerPromise(new Worker(process.env.PUBLIC_URL + "/workers/filter.js"));
 
 export interface HatebuSearchListProps {
     items: HatebuSearchListItem[];
@@ -91,6 +79,12 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
         return null;
     }
 
+    componentDidUpdate(prevProps: HatebuSearchListProps) {
+        if (this.props.items !== prevProps.items) {
+            worker.emit("init", this.state.items);
+        }
+    }
+
     public render() {
         const { items: originalItems } = this.props;
         const { items } = this.state;
@@ -118,9 +112,8 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
     }
 
     private onFilterChanged = debouncePromise((text: string) => {
-        const { items } = this.props;
         const filterWords = text.split(/\s/);
-        return filterItems(filterWords, items).then(items => {
+        return worker.exec("filter", filterWords).then((items: HatebuSearchListItem[]) => {
             return new Promise(resolve => {
                 this.setState(
                     {
