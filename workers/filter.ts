@@ -1,11 +1,13 @@
+import { HatebuSearchListItem } from "../src/container/SearchContainer/SearchContainerStore";
+
 const registerWebworker = require("webworker-promise/lib/register");
-let currentItems = [];
+let currentItems: HatebuSearchListItem[] = [];
 registerWebworker()
-    .on("init", items => {
+    .on("init", (items: HatebuSearchListItem[]) => {
         currentItems = items;
     })
-    .operation("filter", filterWords => {
-        const test = text => {
+    .operation("filter", (filterWords: string[]) => {
+        const test = (text: string) => {
             return filterWords.some(word => {
                 return text.toLowerCase().indexOf(word.toLowerCase()) !== -1;
             });
