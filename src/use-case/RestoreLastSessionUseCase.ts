@@ -2,6 +2,7 @@ import { UseCase } from "almin";
 import { createSwitchCurrentHatebuUserUseCase } from "./SwitchCurrentHatebuUserUseCase";
 import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository";
 import { AppSessionRepository, appSessionRepository } from "../infra/repository/AppSessionRepository";
+import { createRefreshHatenaBookmarkUseCase } from "./hatebu-api/RefreshHatenaBookmarkUseCase";
 
 const debug = require("debug")("hatebu-pwa");
 
@@ -32,5 +33,7 @@ export class RestoreLastSessionUseCase extends UseCase {
         }
         debug("last hatebu: %s", hatebu.name);
         await this.context.useCase(createSwitchCurrentHatebuUserUseCase()).execute(hatebu.name);
+        // TODO: should be handled in router
+        await this.context.useCase(createRefreshHatenaBookmarkUseCase()).execute(hatebu.name);
     }
 }
