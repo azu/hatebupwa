@@ -1,18 +1,24 @@
 import { BookmarkItem } from "./BookmarkItem";
 
-const { findChunks } = require("highlight-words-core");
-export const stringifyBookmarkItem = (bookmark: BookmarkItem): string => {
-    return `${bookmark.title}\t${bookmark.url}\t${bookmark.comment}\t${bookmark.date.toUTCString()}`;
+const memoize = require("micro-memoize").default;
+const regexCombiner = require("regex-combiner");
+const stringifyBookmarkItem = (bookmark: BookmarkItem): string => {
+    return `${bookmark.title}\t${bookmark.url}\t${bookmark.comment}\t${bookmark.date.toString()}`;
 };
 
-export const matchBookmarkItem = (bookmark: BookmarkItem, searchWords: string[]) => {
-    const text = stringifyBookmarkItem(bookmark);
-    return (
-        findChunks({
-            textToHighlight: text,
-            searchWords: searchWords,
-            autoEscape: true,
-            caseSensitive: true
-        }).length > 0
-    );
+const memorizedStringifyBookmarkItem = memoize(stringifyBookmarkItem);
+const memoriezdRegexCombiner = memoize(regexCombiner);
+export const matchBookmarkItem = (bookmark: BookmarkItem, searchWords: string[]): boolean => {
+    const text = memorizedStringifyBookmarkItem(bookmark);
+    const combined = memoriezdRegexCombiner(searchWords);
+    if (!combined.test(text)) {
+        return false;
+    }
+    if (searchWords.length === 1) {
+        return true;
+    }
+    // multiple words as & search
+    return searchWords.every(searchWord => {
+        return text.indexOf(searchWord) !== -1;
+    });
 };

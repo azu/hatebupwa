@@ -19,7 +19,8 @@ export class FetchHatenaBookmarkUseCase extends UseCase {
         if (!hatebu) {
             throw new Error("Hatebu user should be created before fetch.");
         }
-        return fetchHatenaBookmark(userName).then(bookmarkRawItems => {
+        const lastUpdatedDate = hatebu.bookmark.lastUpdated;
+        return fetchHatenaBookmark(userName, lastUpdatedDate).then(bookmarkRawItems => {
             const updatedHatebu = hatebu.updateBookmarkFromItems(convertItems(bookmarkRawItems));
             this.repo.hatebuRepository.save(updatedHatebu);
         });

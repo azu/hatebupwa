@@ -1,4 +1,5 @@
 import { HatebuSearchListItem } from "../src/container/SearchContainer/SearchContainerStore";
+import { matchBookmarkItem } from "../src/domain/Hatebu/BookmarkSearch";
 
 const registerWebworker = require("webworker-promise/lib/register");
 let currentItems: HatebuSearchListItem[] = [];
@@ -7,12 +8,7 @@ registerWebworker()
         currentItems = items;
     })
     .operation("filter", (filterWords: string[]) => {
-        const test = (text: string) => {
-            return filterWords.some(word => {
-                return text.toLowerCase().indexOf(word.toLowerCase()) !== -1;
-            });
-        };
         return currentItems.filter(item => {
-            return test(item.comment) || test(item.title) || test(item.url);
+            return matchBookmarkItem(item, filterWords);
         });
     });
