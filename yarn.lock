@@ -57,6 +57,12 @@
   dependencies:
     csstype "^2.0.0"
 
+"@types/react@^16.3.6":
+  version "16.3.6"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.6.tgz#50cec71f14cbaaf49a53167dc1d6739be1d43f12"
+  dependencies:
+    csstype "^2.0.0"
+
 "@uifabric/icons@>=5.7.0 <6.0.0", "@uifabric/icons@^5.7.0":
   version "5.7.0"
   resolved "https://registry.yarnpkg.com/@uifabric/icons/-/icons-5.7.0.tgz#b15e783d7485963d269fdac44ffea32b59484670"
