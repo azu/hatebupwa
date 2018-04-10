@@ -2,6 +2,11 @@ import { UseCase } from "almin";
 import { fetchHatenaBookmark } from "../../infra/API/HatenaBookmarkFetcher";
 import { HatebuRepository, hatebuRepository } from "../../infra/repository/HatebuRepository";
 import { convertItems } from "../../domain/Hatebu/BookmarkItemFactory";
+import {
+    FailToFetchHatenaBookmarkPayload,
+    FinishFetchHatenaBookmarkPayload,
+    StartFetchHatenaBookmarkPayload
+} from "./FetchHatenaBookmarkPayload";
 
 const debug = require("debug")("hatebu-pwa");
 export const createRefreshHatenaBookmarkUseCase = () => {
@@ -25,10 +30,16 @@ export class RefreshHatenaBookmarkUseCase extends UseCase {
             "start fetching items since %s",
             lastUpdatedDate.isInitialDate ? "initial date" : lastUpdatedDate.toUTCString()
         );
-        return fetchHatenaBookmark(userName, lastUpdatedDate).then(bookmarkRawItems => {
-            debug("finish fetching items(%s)", bookmarkRawItems.length);
-            const updatedHatebu = hatebu.addBookmarkItems(convertItems(bookmarkRawItems));
-            return this.repo.hatebuRepository.save(updatedHatebu);
-        });
+        this.dispatch(new StartFetchHatenaBookmarkPayload());
+        return fetchHatenaBookmark(userName, lastUpdatedDate)
+            .then(async bookmarkRawItems => {
+                debug("finish fetching items(%s)", bookmarkRawItems.length);
+                const updatedHatebu = hatebu.addBookmarkItems(convertItems(bookmarkRawItems));
+                await this.repo.hatebuRepository.save(updatedHatebu);
+                this.dispatch(new FinishFetchHatenaBookmarkPayload());
+            })
+            .catch(error => {
+                this.dispatch(new FailToFetchHatenaBookmarkPayload(error));
+            });
     }
 }

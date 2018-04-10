@@ -3,12 +3,15 @@
     align-items: center;
 }
 
-.UserForm-textField {
+.UserForm-left {
     flex: 1;
+    height: 36px;
 }
 
-.UserForm-submitButton {
+.UserForm-right {
     flex-shrink: 1;
+    width: 96px;
+    height: 36px;
 }
 
 .UserForm-textFieldInput {

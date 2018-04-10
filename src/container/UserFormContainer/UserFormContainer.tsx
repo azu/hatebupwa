@@ -4,8 +4,10 @@ import { context } from "../../Context";
 import { createCreateHatebuUserUseCase } from "../../use-case/CreateHatebuUserUseCase";
 import { UserFormContainerState } from "./UserFormContainerStore";
 import { createFetchInitialHatenaBookmarkUseCase } from "../../use-case/hatebu-api/InitializeWithNewHatenaBookmarkUseCase";
+import { AppState } from "../AppStore";
 
 export interface UserFormContainerProps {
+    app: AppState;
     userFormContainer: UserFormContainerState;
 }
 
@@ -36,6 +38,7 @@ export class UserFormContainer extends React.Component<UserFormContainerProps, {
         return (
             <div className="UserFormContainer">
                 <UserForm
+                    isLocked={this.props.app.isFetching}
                     onSubmit={this.onSubmit}
                     onClickInitializeButton={this.onClickInitialize}
                     userName={this.props.userFormContainer.name}
