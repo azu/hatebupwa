@@ -5,13 +5,20 @@
 
 .UserForm-left {
     flex: 1;
-    height: 36px;
+    height: 32px;
 }
 
 .UserForm-right {
     flex-shrink: 1;
-    width: 96px;
-    height: 36px;
+    min-width: 96px;
+    max-width: 124px;
+    height: 32px;
+    /* center */
+    display: flex;
+    align-items: center;
+    align-content: center;
+    flex-direction: column; /* 子要素をflexboxにより縦方向に揃える */
+    justify-content: center; /* 子要素をflexboxにより中央に配置する */
 }
 
 .UserForm-textFieldInput {

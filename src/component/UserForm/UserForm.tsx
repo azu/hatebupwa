@@ -7,7 +7,6 @@ export interface UserFormProps {
     // lock input and button
     isLocked: boolean;
     onSubmit: (name: string) => void;
-    onClickInitializeButton: (name: string) => void;
 }
 
 export class UserForm extends React.Component<UserFormProps, {}> {
@@ -16,12 +15,6 @@ export class UserForm extends React.Component<UserFormProps, {}> {
         event.preventDefault();
         if (this.textField) {
             this.props.onSubmit(this.textField.value || "");
-        }
-    };
-
-    private onClickInitialize = () => {
-        if (this.textField) {
-            this.props.onClickInitializeButton(this.textField.value || "");
         }
     };
 
@@ -42,25 +35,13 @@ export class UserForm extends React.Component<UserFormProps, {}> {
                     </div>
                     <div className="UserForm-right">
                         {this.props.isLocked ? (
-                            <Spinner className={"UserForm-right"} size={SpinnerSize.medium} />
+                            <Spinner size={SpinnerSize.medium} />
                         ) : (
                             <PrimaryButton
-                                className={"UserForm-submitButton UserForm-right"}
+                                className={"UserForm-submitButton"}
                                 type="submit"
                                 data-automation-id="test"
-                                text="決定"
-                                split={true}
-                                style={{ height: "35px" }}
-                                menuProps={{
-                                    items: [
-                                        {
-                                            key: "initialize",
-                                            name: "データの再構築",
-                                            icon: "Refresh",
-                                            onClick: this.onClickInitialize
-                                        }
-                                    ]
-                                }}
+                                text="データ取得"
                             />
                         )}
                     </div>
