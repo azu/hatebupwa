@@ -1,7 +1,6 @@
 import { UseCase } from "almin";
 import { createHatebu } from "../domain/Hatebu/HatebuFactory";
 import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository";
-import { SwitchCurrentHatebuUserUseCase } from "./SwitchCurrentHatebuUserUseCase";
 
 export const createCreateHatebuUserUseCase = () => {
     return new CreateHatebuUserUseCase({
@@ -19,11 +18,8 @@ export class CreateHatebuUserUseCase extends UseCase {
         return existingHatebu === undefined;
     }
 
-    async execute(userName: string) {
+    execute(userName: string) {
         const hatebu = createHatebu(userName);
-        await this.repo.hatebuRepository.save(hatebu);
-        return this.context
-            .useCase(new SwitchCurrentHatebuUserUseCase())
-            .executor(useCase => useCase.execute(userName));
+        return this.repo.hatebuRepository.save(hatebu);
     }
 }

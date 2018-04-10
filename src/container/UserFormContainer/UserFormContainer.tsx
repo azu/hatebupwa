@@ -5,6 +5,7 @@ import { createCreateHatebuUserUseCase } from "../../use-case/CreateHatebuUserUs
 import { UserFormContainerState } from "./UserFormContainerStore";
 import { createFetchInitialHatenaBookmarkUseCase } from "../../use-case/hatebu-api/InitializeWithNewHatenaBookmarkUseCase";
 import { AppState } from "../AppStore";
+import { createSwitchCurrentHatebuUserUseCase } from "../../use-case/SwitchCurrentHatebuUserUseCase";
 
 export interface UserFormContainerProps {
     app: AppState;
@@ -13,8 +14,12 @@ export interface UserFormContainerProps {
 
 export class UserFormContainer extends React.Component<UserFormContainerProps, {}> {
     private onSubmit = async (userName: string) => {
+        console.log("userName", userName);
         try {
             await context.useCase(createCreateHatebuUserUseCase()).executor(useCase => useCase.execute(userName));
+            await context
+                .useCase(createSwitchCurrentHatebuUserUseCase())
+                .executor(useCase => useCase.execute(userName));
             await context
                 .useCase(createFetchInitialHatenaBookmarkUseCase())
                 .executor(useCase => useCase.execute(userName));
