@@ -5,13 +5,13 @@
 .HatebuSearchListItem-body {
     border: 1px #ddd solid;
     display: flex;
-    word-break: break-all;
     flex-direction: row;
     padding: 0.5rem 0.3rem;
 }
 
 .HatebuSearchListItem-main {
     flex: 7;
+    word-break: break-all;
     border-right: 1px #ddd solid;
     /* align vertical */
     display: flex;

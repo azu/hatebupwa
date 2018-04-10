@@ -58,7 +58,7 @@ export const HatebuSearchListItemComponent = (item: HatebuSearchListItemProps) =
                         />
                     </div>
                 </div>
-                <div className="HatebuSearchListItem-timestamp">{format(item.date.date, "YYYY-MM-DD HH:mm:ss")}</div>
+                <div className="HatebuSearchListItem-timestamp">{format(item.date.date, "YYYY-MM-DD HH:mm")}</div>
             </div>
         </div>
     );
