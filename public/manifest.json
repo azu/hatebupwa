@@ -1,6 +1,7 @@
 {
   "short_name": "はてブ検索",
   "name": "はてなブックマーク検索PWA",
+  "start_url": "https://hatebupwa.netlify.com/home/",
   "icons": [
     {
       "src": "favicon.ico",

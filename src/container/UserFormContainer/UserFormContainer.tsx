@@ -23,8 +23,6 @@ export class UserFormContainer extends React.Component<UserFormContainerProps, {
             await context
                 .useCase(createFetchInitialHatenaBookmarkUseCase())
                 .executor(useCase => useCase.execute(userName));
-            // TODO: FIXME history
-            history.pushState({}, userName, `/user/${encodeURIComponent(userName)}`);
         } catch (error) {
             console.error(error);
         }

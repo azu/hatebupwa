@@ -1,2 +1,3 @@
 /user/:name /index.html                  200
+/home/       /index.html                  200
 /hatebu/*  http://b.hatena.ne.jp/:splat  200

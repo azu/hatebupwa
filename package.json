@@ -45,6 +45,7 @@
     "react-scripts-ts": "2.14.0",
     "regex-combiner": "^1.0.1",
     "search-query-tester": "^1.0.1",
+    "ulid": "^2.3.0",
     "webworker-promise": "^0.4.1"
   },
   "devDependencies": {
@@ -84,6 +85,12 @@
       "target": "http://localhost:3000/",
       "pathRewrite": {
         "^/user/*": "/index.html"
+      }
+    },
+    "/home": {
+      "target": "http://localhost:3000/",
+      "pathRewrite": {
+        "^/home": "/index.html"
       }
     }
   }

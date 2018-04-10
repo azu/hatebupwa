@@ -7,6 +7,7 @@ import { createInitializeSystemUseCase } from "../use-case/InitializeSystemUseCa
 import { Route, Router } from "react-routing-resolver";
 import { createRefreshHatenaBookmarkUseCase } from "../use-case/hatebu-api/RefreshHatenaBookmarkUseCase";
 import { createSwitchCurrentHatebuUserUseCase } from "../use-case/SwitchCurrentHatebuUserUseCase";
+import { createRestoreLastSessionUseCase } from "../use-case/RestoreLastSessionUseCase";
 
 export class App extends React.Component {
     state = {
@@ -37,6 +38,9 @@ export class App extends React.Component {
     };
 
     private onMatchOther = () => {};
+    private onMatchHome = async () => {
+        await context.useCase(createRestoreLastSessionUseCase()).executor(useCase => useCase.execute());
+    };
 
     render() {
         return (
@@ -44,6 +48,7 @@ export class App extends React.Component {
                 {this.state.isInitialized ? (
                     <Router currentPath={location.pathname}>
                         <Route pattern={"/user/:name"} onMatch={this.onUserNameMatch} />
+                        <Route pattern={"/home/"} onMatch={this.onMatchHome} />
                         <Route pattern={"*"} onMatch={this.onMatchOther} />
                     </Router>
                 ) : null}
