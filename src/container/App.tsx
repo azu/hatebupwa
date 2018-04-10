@@ -26,8 +26,14 @@ export class App extends React.Component {
 
     private onUserNameMatch = async (args: { name: string }) => {
         const userName = args.name;
-        await context.useCase(createSwitchCurrentHatebuUserUseCase()).executor(useCase => useCase.execute(userName));
-        await context.useCase(createRefreshHatenaBookmarkUseCase()).executor(useCase => useCase.execute(userName));
+        try {
+            await context
+                .useCase(createSwitchCurrentHatebuUserUseCase())
+                .executor(useCase => useCase.execute(userName));
+            await context.useCase(createRefreshHatenaBookmarkUseCase()).executor(useCase => useCase.execute(userName));
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     private onMatchOther = () => {};
