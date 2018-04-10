@@ -28,6 +28,7 @@ export class UserForm extends React.Component<UserFormProps, {}> {
                             inputClassName={"UserForm-textFieldInput"}
                             className={"UserForm-textField"}
                             value={this.props.userName}
+                            placeholder={"hatenabookmark"}
                             autoComplete="off"
                             disabled={this.props.isLocked}
                             ref={c => (this.textField = c)}

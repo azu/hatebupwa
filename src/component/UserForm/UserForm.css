@@ -1,3 +1,7 @@
+.UserForm-label {
+    text-align: center;
+}
+
 .UserForm-body {
     display: flex;
     align-items: center;

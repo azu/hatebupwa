@@ -18,11 +18,11 @@ describe("BookmarkSearch", () => {
             assert.ok(matchBookmarkItem(bookmark, ["title"]));
             assert.ok(matchBookmarkItem(bookmark, ["comment"]));
             assert.ok(matchBookmarkItem(bookmark, ["example.com"]));
-            assert.ok(matchBookmarkItem(bookmark, ["nomatch", "title"]));
         });
         it("should return false if match the searchWords", () => {
             const bookmark = createExampleBookmark();
             assert.strictEqual(matchBookmarkItem(bookmark, ["nomatch"]), false);
+            assert.strictEqual(matchBookmarkItem(bookmark, ["nomatch", "title"]), false);
         });
     });
 });
