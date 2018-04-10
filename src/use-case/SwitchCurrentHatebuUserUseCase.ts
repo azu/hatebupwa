@@ -1,5 +1,9 @@
 import { Payload, UseCase } from "almin";
 
+export const createSwitchCurrentHatebuUserUseCase = () => {
+    return new SwitchCurrentHatebuUserUseCase();
+};
+
 export class SwitchCurrentHatebuUserUseCasePayload extends Payload {
     type = "SwitchCurrentHatebuUserUseCase";
 

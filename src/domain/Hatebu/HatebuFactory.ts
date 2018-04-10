@@ -10,7 +10,7 @@ export const createHatebu = (userName: string) => {
         id: new HatebuIdentifier(userName),
         bookmark: new Bookmark({
             items: [],
-            lastUpdated: new BookmarkDate(new Date())
+            lastUpdated: BookmarkDate.createInitialDate()
         })
     });
 };

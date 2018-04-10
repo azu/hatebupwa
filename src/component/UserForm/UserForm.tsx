@@ -1,10 +1,11 @@
 import * as React from "react";
-import { Label, PrimaryButton, TextField } from "office-ui-fabric-react";
 import { FormEvent } from "react";
+import { Label, PrimaryButton, TextField } from "office-ui-fabric-react";
 
 export interface UserFormProps {
     userName?: string;
     onSubmit: (name: string) => void;
+    onClickInitializeButton: (name: string) => void;
 }
 
 export class UserForm extends React.Component<UserFormProps, {}> {
@@ -13,6 +14,12 @@ export class UserForm extends React.Component<UserFormProps, {}> {
         event.preventDefault();
         if (this.textField) {
             this.props.onSubmit(this.textField.value || "");
+        }
+    };
+
+    private onClickInitialize = () => {
+        if (this.textField) {
+            this.props.onClickInitializeButton(this.textField.value || "");
         }
     };
 
@@ -28,9 +35,24 @@ export class UserForm extends React.Component<UserFormProps, {}> {
                         autoComplete="off"
                         ref={c => (this.textField = c)}
                     />
-                    <PrimaryButton className={"UserForm-submitButton"} type="submit">
-                        決定
-                    </PrimaryButton>
+                    <PrimaryButton
+                        className={"UserForm-submitButton"}
+                        type="submit"
+                        data-automation-id="test"
+                        text="決定"
+                        split={true}
+                        style={{ height: "35px" }}
+                        menuProps={{
+                            items: [
+                                {
+                                    key: "initialize",
+                                    name: "データの再構築",
+                                    icon: "Refresh",
+                                    onClick: this.onClickInitialize
+                                }
+                            ]
+                        }}
+                    />
                 </div>
             </form>
         );

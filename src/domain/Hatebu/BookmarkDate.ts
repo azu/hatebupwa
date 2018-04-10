@@ -9,6 +9,18 @@ export class BookmarkDate {
         return new BookmarkDate(new Date(value));
     }
 
+    /**
+     * Create oldest Date
+     * @returns {BookmarkDate}
+     */
+    static createInitialDate() {
+        return new BookmarkDate(new Date(0));
+    }
+
+    get isInitialDate() {
+        return this.date.getTime() === 0;
+    }
+
     get unixTime() {
         return this.date.getTime();
     }

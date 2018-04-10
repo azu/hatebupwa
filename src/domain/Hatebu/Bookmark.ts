@@ -51,11 +51,15 @@ export class Bookmark implements BookmarkProps {
         return this.items.filter(predicate);
     }
 
-    updateBookmark(items: BookmarkItem[], lastUpdated = new Date()) {
+    updateBookmarkItems(items: BookmarkItem[], lastUpdated = new Date()) {
         return new Bookmark({
             ...(this as BookmarkProps),
-            items,
+            items: items,
             lastUpdated: new BookmarkDate(lastUpdated)
         });
+    }
+
+    addBookmarkItems(items: BookmarkItem[], lastUpdated = new Date()) {
+        return this.updateBookmarkItems(this.items.concat(items), lastUpdated);
     }
 }

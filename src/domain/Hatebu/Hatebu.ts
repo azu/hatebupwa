@@ -41,10 +41,17 @@ export class Hatebu extends Entity<HatebuIdentifier> implements HatebuProps {
         return this.id.toValue();
     }
 
-    updateBookmarkFromItems(bookmarkItems: BookmarkItem[]) {
+    addBookmarkItems(bookmarkItems: BookmarkItem[]) {
         return new Hatebu({
             ...(this as HatebuProps),
-            bookmark: this.bookmark.updateBookmark(bookmarkItems)
+            bookmark: this.bookmark.addBookmarkItems(bookmarkItems)
+        });
+    }
+
+    updateBookmarkItems(bookmarkItems: BookmarkItem[]) {
+        return new Hatebu({
+            ...(this as HatebuProps),
+            bookmark: this.bookmark.updateBookmarkItems(bookmarkItems)
         });
     }
 }

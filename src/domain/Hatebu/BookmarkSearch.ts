@@ -2,6 +2,7 @@ import { BookmarkItem } from "./BookmarkItem";
 
 const memoize = require("micro-memoize").default;
 const regexCombiner = require("regex-combiner");
+
 const stringifyBookmarkItem = (bookmark: BookmarkItem): string => {
     return `${bookmark.title}\t${bookmark.url}\t${bookmark.comment}\t${bookmark.date.toString()}`;
 };

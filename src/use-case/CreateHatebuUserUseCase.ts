@@ -14,6 +14,11 @@ export class CreateHatebuUserUseCase extends UseCase {
         super();
     }
 
+    shouldExecute(userName: string) {
+        const existingHatebu = this.repo.hatebuRepository.findByUserName(userName);
+        return existingHatebu === undefined;
+    }
+
     async execute(userName: string) {
         const hatebu = createHatebu(userName);
         await this.repo.hatebuRepository.save(hatebu);

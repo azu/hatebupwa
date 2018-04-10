@@ -10,6 +10,7 @@ import {
 import { HatebuSearchListItem } from "../../container/SearchContainer/SearchContainerStore";
 import { KeyboardEvent } from "react";
 
+const format = require("date-fns/format");
 const debouncePromise = require("debounce-promise");
 const Highlighter = require("react-highlight-words");
 const WebworkerPromise = require("webworker-promise");
@@ -57,7 +58,7 @@ export const HatebuSearchListItemComponent = (item: HatebuSearchListItemProps) =
                         />
                     </div>
                 </div>
-                <div className="HatebuSearchListItem-timestamp">{item.date.date.toUTCString()}</div>
+                <div className="HatebuSearchListItem-timestamp">{format(item.date.date, "YYYY-MM-DD HH:mm:ss")}</div>
             </div>
         </div>
     );
