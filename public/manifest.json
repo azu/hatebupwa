@@ -6,6 +6,42 @@
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "./img/hatenabookmark/favicon-36.png",
+      "sizes": "36x36",
+      "type": "image\/png",
+      "density": 0.75
+    },
+    {
+      "src": "./img/hatenabookmark/favicon-48.png",
+      "sizes": "48x48",
+      "type": "image\/png",
+      "density": 1
+    },
+    {
+      "src": "./img/hatenabookmark/favicon-72.png",
+      "sizes": "72x72",
+      "type": "image\/png",
+      "density": 1.5
+    },
+    {
+      "src": "./img/hatenabookmark/favicon-96.png",
+      "sizes": "96x96",
+      "type": "image\/png",
+      "density": 2
+    },
+    {
+      "src": "./img/hatenabookmark/favicon-144.png",
+      "sizes": "144x144",
+      "type": "image\/png",
+      "density": 3
+    },
+    {
+      "src": "./img/hatenabookmark/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image\/png",
+      "density": 4
     }
   ],
   "display": "standalone",
