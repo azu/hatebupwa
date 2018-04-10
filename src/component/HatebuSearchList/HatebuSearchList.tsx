@@ -13,7 +13,6 @@ import { KeyboardEvent } from "react";
 const debouncePromise = require("debounce-promise");
 const Highlighter = require("react-highlight-words");
 const WebworkerPromise = require("webworker-promise");
-const worker = new WebworkerPromise(new Worker(process.env.PUBLIC_URL + "/workers/filter.js"));
 
 export interface HatebuSearchListProps {
     items: HatebuSearchListItem[];
@@ -69,6 +68,18 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
         filterWords: [],
         items: this.props.items
     };
+    private filterWorker: Worker;
+    private disableWorker: boolean = false;
+    private worker: any;
+
+    componentDidMount() {
+        this.filterWorker = new Worker(process.env.PUBLIC_URL + "/workers/filter.js");
+        this.filterWorker.addEventListener("error", error => {
+            console.error("Worker Error", error);
+            this.disableWorker = true;
+        });
+        this.worker = new WebworkerPromise(this.filterWorker);
+    }
 
     static getDerivedStateFromProps(nextProps: HatebuSearchListProps, prevState: HatebuSearchListState) {
         if (nextProps.items !== prevState.items) {
@@ -81,7 +92,7 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
 
     componentDidUpdate(prevProps: HatebuSearchListProps) {
         if (this.props.items !== prevProps.items) {
-            worker.emit("init", this.state.items);
+            this.worker.emit("init", this.state.items);
         }
     }
 
@@ -113,17 +124,23 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
 
     private onFilterChanged = debouncePromise((text: string) => {
         const filterWords = text.split(/\s/);
-        return worker.exec("filter", filterWords).then((items: HatebuSearchListItem[]) => {
-            return new Promise(resolve => {
-                this.setState(
-                    {
-                        filterWords: filterWords,
-                        items: items
-                    },
-                    resolve
-                );
+        console.log("this.disableWorker", this.disableWorker);
+        return this.worker
+            .exec("filter", filterWords)
+            .then((items: HatebuSearchListItem[]) => {
+                return new Promise(resolve => {
+                    this.setState(
+                        {
+                            filterWords: filterWords,
+                            items: items
+                        },
+                        resolve
+                    );
+                });
+            })
+            .catch((error: Error) => {
+                console.log(error);
             });
-        });
     }, 100);
 
     private onRenderCell = (item: any, index: number | undefined): JSX.Element => {

@@ -11,9 +11,8 @@
     "precommit": "lint-staged",
     "postcommit": "git reset",
     "eject": "react-scripts-ts eject",
-    "start": "npm-run-all start:*",
+    "start": "npm-run-all build:worker start:*",
     "start:react": "react-scripts-ts start",
-    "start:worker": "webpack --mode development --config webpack.worker.config.js",
     "test": "react-scripts-ts test --env=node",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
   },
