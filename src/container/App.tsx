@@ -80,7 +80,7 @@ export class App extends React.Component<{}, AppState> {
 
                 <div className="App">
                     <h1 className={"App-title"}>
-                        <Link href={process.env.PUBLIC_URL}>はてなブックマーク検索</Link>
+                        <Link href={"/"}>はてなブックマーク検索</Link>
                     </h1>
                     <Consumer>
                         {state => {
