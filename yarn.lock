@@ -37,23 +37,23 @@
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-22.2.2.tgz#afe5dacbd00d65325f52da0ed3e76e259629ac9d"
 
 "@types/node@*", "@types/node@^9.6.2":
-  version "9.6.2"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.2.tgz#e49ac1adb458835e95ca6487bc20f916b37aff23"
+  version "9.6.4"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.4.tgz#0ef7b4cfc3499881c81e0ea1ce61a23f6f4f5b42"
 
 "@types/prop-types@^15.5.2":
   version "15.5.2"
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.2.tgz#3c6b8dceb2906cc87fe4358e809f9d20c8d59be1"
 
-"@types/react-dom@16.0.4", "@types/react-dom@^16.0.4":
-  version "16.0.4"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.4.tgz#2e8fd45f5443780ed49bf2cdd9809e6091177a7d"
+"@types/react-dom@16.0.5", "@types/react-dom@^16.0.4":
+  version "16.0.5"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.0.5.tgz#a757457662e3819409229e8f86795ff37b371f96"
   dependencies:
     "@types/node" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@16.3.6", "@types/react@^16.3.5", "@types/react@^16.3.6":
-  version "16.3.6"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.6.tgz#50cec71f14cbaaf49a53167dc1d6739be1d43f12"
+"@types/react@*", "@types/react@16.3.8", "@types/react@^16.3.5":
+  version "16.3.8"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.3.8.tgz#40c7e4eca3f48783e4c4ccee26fc7f5a5a476d84"
   dependencies:
     csstype "^2.0.0"
 
@@ -64,18 +64,18 @@
     "@uifabric/styling" ">=5.21.0 <6.0.0"
     tslib "^1.7.1"
 
-"@uifabric/merge-styles@>=5.14.0 <6.0.0", "@uifabric/merge-styles@>=5.14.1 <6.0.0":
-  version "5.14.1"
-  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-5.14.1.tgz#bc09bbb8f4d7ddf1328baeb0f07101263a4d5c6a"
+"@uifabric/merge-styles@>=5.14.0 <6.0.0", "@uifabric/merge-styles@>=5.15.0 <6.0.0":
+  version "5.15.0"
+  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-5.15.0.tgz#bf1c196fd606ecb7b87ff34f40f9850c37a80217"
   dependencies:
     tslib "^1.7.1"
 
-"@uifabric/styling@>=5.21.0 <6.0.0", "@uifabric/styling@>=5.22.0 <6.0.0":
-  version "5.22.0"
-  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-5.22.0.tgz#f19621f78ec117c50aef6215d96cd164efac8397"
+"@uifabric/styling@>=5.21.0 <6.0.0", "@uifabric/styling@>=5.23.0 <6.0.0":
+  version "5.23.0"
+  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-5.23.0.tgz#4482cf169b93771f0b339f491eaf086e40b90c0a"
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
-    "@uifabric/merge-styles" ">=5.14.0 <6.0.0"
+    "@uifabric/merge-styles" ">=5.15.0 <6.0.0"
     "@uifabric/utilities" ">=5.23.0 <6.0.0"
     tslib "^1.7.1"
 
@@ -87,18 +87,6 @@
     "@uifabric/merge-styles" ">=5.14.0 <6.0.0"
     prop-types "^15.5.10"
     tslib "^1.7.1"
-
-"@uirouter/core@5.0.17":
-  version "5.0.17"
-  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.17.tgz#c85d422b1e9a45df885be8b84f9b7f53233a7973"
-
-"@uirouter/react@^0.6.2":
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/@uirouter/react/-/react-0.6.2.tgz#cfedcba0e3aa134968689bae2045ce38b05a96ca"
-  dependencies:
-    "@uirouter/core" "5.0.17"
-    classnames "2.2.5"
-    prop-types "15.6.0"
 
 abab@^1.0.4:
   version "1.0.4"
@@ -1366,16 +1354,14 @@ braces@^1.8.2:
     repeat-element "^1.1.2"
 
 braces@^2.3.0, braces@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/braces/-/braces-2.3.1.tgz#7086c913b4e5a08dbe37ac0ee6a2500c4ba691bb"
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/braces/-/braces-2.3.2.tgz#5979fd3f14cd531565e5fa2df1abfff1dfaee729"
   dependencies:
     arr-flatten "^1.1.0"
     array-unique "^0.3.2"
-    define-property "^1.0.0"
     extend-shallow "^2.0.1"
     fill-range "^4.0.0"
     isobject "^3.0.1"
-    kind-of "^6.0.2"
     repeat-element "^1.1.2"
     snapdragon "^0.8.1"
     snapdragon-node "^2.0.1"
@@ -1588,12 +1574,12 @@ caniuse-api@^1.5.2:
     lodash.uniq "^4.5.0"
 
 caniuse-db@^1.0.30000529, caniuse-db@^1.0.30000634, caniuse-db@^1.0.30000639:
-  version "1.0.30000824"
-  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000824.tgz#bba3ff425296e04caa37fe426259206a7056551b"
+  version "1.0.30000827"
+  resolved "https://registry.yarnpkg.com/caniuse-db/-/caniuse-db-1.0.30000827.tgz#bd2839dd196093b44c28c17f93513140c9d92588"
 
 caniuse-lite@^1.0.30000748, caniuse-lite@^1.0.30000792:
-  version "1.0.30000824"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000824.tgz#de3bc1ba0bff4937302f8cb2a8632a8cc1c07f9a"
+  version "1.0.30000827"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000827.tgz#2dad2354e4810c3c9bb1cfc57f655c270c25fa52"
 
 capture-stack-trace@^1.0.0:
   version "1.0.0"
@@ -1710,10 +1696,6 @@ class-utils@^0.3.5:
     define-property "^0.2.5"
     isobject "^3.0.0"
     static-extend "^0.1.1"
-
-classnames@2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
 clean-css@4.1.x:
   version "4.1.11"
@@ -2007,8 +1989,8 @@ core-js@^1.0.0:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
 
 core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.0:
-  version "2.5.4"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.4.tgz#f2c8bf181f2a80b92f360121429ce63a2f0aeae0"
+  version "2.5.5"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.5.tgz#b14dde936c640c0579a6b50cabcc132dd6127e3b"
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -3718,7 +3700,7 @@ highlight-words-core@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/highlight-words-core/-/highlight-words-core-1.2.0.tgz#232bec301cbf2a4943d335dc748ce70e9024f3b1"
 
-history@^4.2.0:
+history@^4.2.0, history@^4.7.2:
   version "4.7.2"
   resolved "https://registry.yarnpkg.com/history/-/history-4.7.2.tgz#22b5c7f31633c5b8021c7f4a8a954ac139ee8d5b"
   dependencies:
@@ -4951,8 +4933,8 @@ lcid@^1.0.0:
     invert-kv "^1.0.0"
 
 left-pad@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/left-pad/-/left-pad-1.2.0.tgz#d30a73c6b8201d8f7d8e7956ba9616087a68e0ee"
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/left-pad/-/left-pad-1.3.0.tgz#5b8a3a7765dfe001261dde915589e782f8c94d1e"
 
 leven@^2.1.0:
   version "2.1.0"
@@ -5816,14 +5798,14 @@ obuf@^1.0.0, obuf@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/obuf/-/obuf-1.1.2.tgz#09bea3343d41859ebd446292d11c9d4db619084e"
 
-office-ui-fabric-react@^5.79.1:
-  version "5.79.1"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-5.79.1.tgz#2670667fc880f9cd734a2739d1a365669db30f9a"
+office-ui-fabric-react@^5.80.0:
+  version "5.80.0"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-5.80.0.tgz#7795f7d1635f0601e28a146b49f963a238b8a95d"
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/icons" ">=5.7.0 <6.0.0"
-    "@uifabric/merge-styles" ">=5.14.1 <6.0.0"
-    "@uifabric/styling" ">=5.22.0 <6.0.0"
+    "@uifabric/merge-styles" ">=5.15.0 <6.0.0"
+    "@uifabric/styling" ">=5.23.0 <6.0.0"
     "@uifabric/utilities" ">=5.23.0 <6.0.0"
     prop-types "^15.5.10"
     tslib "^1.7.1"
@@ -6156,10 +6138,6 @@ performance-now@^0.2.0:
 performance-now@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
-
-philtre@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/philtre/-/philtre-1.0.2.tgz#beae6138675f4943ad3155ac3796be143c8ee581"
 
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
@@ -6555,14 +6533,6 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@15.6.0:
-  version "15.6.0"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
-  dependencies:
-    fbjs "^0.8.16"
-    loose-envify "^1.3.1"
-    object-assign "^4.1.1"
-
 prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0:
   version "15.6.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.6.1.tgz#36644453564255ddda391191fb3a125cbdf654ca"
@@ -6763,9 +6733,9 @@ react-highlight-words@^0.11.0:
     highlight-words-core "^1.2.0"
     prop-types "^15.5.8"
 
-react-routing-resolver@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/react-routing-resolver/-/react-routing-resolver-2.0.1.tgz#d8af251e1306b59047c6c69367f15bf866eaca98"
+react-routing-resolver@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/react-routing-resolver/-/react-routing-resolver-2.1.1.tgz#012c5448c7ff0abd939f49013f1b33aff7ae48da"
   dependencies:
     "@types/history" "^4.6.2"
     "@types/react" "^16.3.5"
@@ -7152,8 +7122,8 @@ require-from-string@^1.1.0:
   resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-1.2.1.tgz#529c9ccef27380adfec9a2f965b649bbee636418"
 
 require-from-string@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-2.0.1.tgz#c545233e9d7da6616e9d59adfb39fc9f588676ff"
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-2.0.2.tgz#89a7fdd938261267318eafe14f9c32e598c36909"
 
 require-main-filename@^1.0.1:
   version "1.0.1"
@@ -7321,12 +7291,6 @@ schema-utils@^0.4.2, schema-utils@^0.4.5:
 scoped-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/scoped-regex/-/scoped-regex-1.0.0.tgz#a346bb1acd4207ae70bd7c0c7ca9e566b6baddb8"
-
-search-query-tester@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/search-query-tester/-/search-query-tester-1.0.1.tgz#c2b9ae38dfa803736bbb12dc044c3b49d810d38a"
-  dependencies:
-    philtre "^1.0.2"
 
 select-hose@^2.0.0:
   version "2.0.0"

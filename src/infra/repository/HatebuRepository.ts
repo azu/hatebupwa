@@ -37,6 +37,10 @@ export class HatebuRepository extends NullableRepository<Hatebu> {
         return lastValue;
     }
 
+    findByHatebuId(id?: HatebuIdentifier) {
+        return this.findById(id);
+    }
+
     findByUserName(userName: string) {
         return this.findById(new HatebuIdentifier(userName));
     }

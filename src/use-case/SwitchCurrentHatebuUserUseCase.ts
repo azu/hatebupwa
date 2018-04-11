@@ -1,6 +1,9 @@
 import { Payload, UseCase } from "almin";
 import { AppSessionRepository, appSessionRepository } from "../infra/repository/AppSessionRepository";
 import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository";
+import { browserHistory } from "../infra/browser/browserHistory";
+
+const debug = require("debug")("hatebu-pwa:SwitchCurrentHatebuUserUseCase");
 
 export const createSwitchCurrentHatebuUserUseCase = () => {
     return new SwitchCurrentHatebuUserUseCase({
@@ -23,13 +26,15 @@ export class SwitchCurrentHatebuUserUseCase extends UseCase {
     }
 
     async execute(userName: string) {
+        const appSession = this.repo.appSessionRepository.get();
+        const hatebu = this.repo.hatebuRepository.findByHatebuId(appSession.currentHatebuId);
+        debug("current hatebu: %o", hatebu);
         this.dispatch(new SwitchCurrentHatebuUserUseCasePayload(userName));
         // TODO: FIXME history handling
-        if (typeof history !== "undefined") {
-            history.pushState({}, userName, `/user/${encodeURIComponent(userName)}`);
+        debug("pathname %s", browserHistory.location.pathname);
+        if (browserHistory.location.pathname !== `/user/${encodeURIComponent(userName)}`) {
+            browserHistory.push(`/user/${encodeURIComponent(userName)}`);
         }
-        const appSession = this.repo.appSessionRepository.get();
-        const hatebu = this.repo.hatebuRepository.findByUserName(userName);
         if (hatebu) {
             const newSession = appSession.setCurrentUsedHatebu(hatebu);
             await this.repo.appSessionRepository.save(newSession);

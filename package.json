@@ -23,9 +23,9 @@
   },
   "dependencies": {
     "@types/debug": "^0.0.30",
+    "@types/history": "^4.6.2",
     "@types/prop-types": "^15.5.2",
     "@uifabric/icons": "^5.7.0",
-    "@uirouter/react": "^0.6.2",
     "almin": "^0.16.0",
     "almin-logger": "^6.1.5",
     "date-fns": "^1.29.0",
@@ -34,25 +34,25 @@
     "debug": "^3.1.0",
     "hatebu-mydata-parser": "^1.0.0",
     "highlight-words-core": "^1.2.0",
+    "history": "^4.7.2",
     "localforage": "^1.7.1",
     "localforage-memoryStorageDriver": "^0.9.2",
     "micro-memoize": "^2.0.1",
-    "office-ui-fabric-react": "^5.79.1",
+    "office-ui-fabric-react": "^5.80.0",
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-highlight-words": "^0.11.0",
-    "react-routing-resolver": "^2.0.1",
+    "react-routing-resolver": "^2.1.1",
     "react-scripts-ts": "2.14.0",
     "regex-combiner": "^1.0.1",
-    "search-query-tester": "^1.0.1",
     "ulid": "^2.3.0",
     "webworker-promise": "^0.4.1"
   },
   "devDependencies": {
     "@types/jest": "^22.2.2",
     "@types/node": "^9.6.2",
-    "@types/react": "^16.3.6",
-    "@types/react-dom": "^16.0.4",
+    "@types/react": "16.3.8",
+    "@types/react-dom": "16.0.5",
     "express": "^4.16.3",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.4",
@@ -64,8 +64,8 @@
     "webpack-cli": "^2.0.14"
   },
   "resolutions": {
-    "@types/react": "16.3.6",
-    "@types/react-dom": "16.0.4"
+    "@types/react": "16.3.8",
+    "@types/react-dom": "16.0.5"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [

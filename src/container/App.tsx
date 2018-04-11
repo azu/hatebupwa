@@ -1,5 +1,4 @@
 import * as React from "react";
-import "./App.css";
 import { UserFormContainer } from "./UserFormContainer/UserFormContainer";
 import { SearchContainer } from "./SearchContainer/SearchContainer";
 import { Consumer, context } from "../Context";
@@ -8,6 +7,7 @@ import { Route, Router } from "react-routing-resolver";
 import { createRefreshHatenaBookmarkUseCase } from "../use-case/hatebu-api/RefreshHatenaBookmarkUseCase";
 import { createSwitchCurrentHatebuUserUseCase } from "../use-case/SwitchCurrentHatebuUserUseCase";
 import { createRestoreLastSessionUseCase } from "../use-case/RestoreLastSessionUseCase";
+import { browserHistory } from "../infra/browser/browserHistory";
 
 export class App extends React.Component {
     state = {
@@ -46,7 +46,7 @@ export class App extends React.Component {
         return (
             <>
                 {this.state.isInitialized ? (
-                    <Router currentPath={location.pathname}>
+                    <Router currentPath={browserHistory.location.pathname} history={browserHistory}>
                         <Route pattern={"/user/:name"} onMatch={this.onUserNameMatch} />
                         <Route pattern={"/home/"} onMatch={this.onMatchHome} />
                         <Route pattern={"*"} onMatch={this.onMatchOther} />
