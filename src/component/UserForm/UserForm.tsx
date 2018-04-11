@@ -1,20 +1,33 @@
 import * as React from "react";
 import { FormEvent } from "react";
-import { Label, PrimaryButton, Spinner, SpinnerSize, TextField } from "office-ui-fabric-react";
+import { DefaultButton, Label, Spinner, SpinnerSize, TextField } from "office-ui-fabric-react";
 
 export interface UserFormProps {
     userName?: string;
     // lock input and button
     isLocked: boolean;
     onSubmit: (name: string) => void;
+    onClickRebuild: (name: string) => void;
 }
 
 export class UserForm extends React.Component<UserFormProps, {}> {
-    private textField: TextField | null;
+    private textFieldRef = React.createRef<TextField>();
     private onSubmit = (event: FormEvent<any>) => {
         event.preventDefault();
-        if (this.textField) {
-            this.props.onSubmit(this.textField.value || "");
+        if (this.textFieldRef.current) {
+            this.props.onSubmit(this.textFieldRef.current.value || "");
+        }
+    };
+
+    private onClick = () => {
+        if (this.textFieldRef.current) {
+            this.props.onSubmit(this.textFieldRef.current.value || "");
+        }
+    };
+
+    private onClickRebuild = () => {
+        if (this.textFieldRef.current) {
+            this.props.onClickRebuild(this.textFieldRef.current.value || "");
         }
     };
 
@@ -31,18 +44,30 @@ export class UserForm extends React.Component<UserFormProps, {}> {
                             placeholder={"hatenabookmark"}
                             autoComplete="off"
                             disabled={this.props.isLocked}
-                            ref={c => (this.textField = c)}
+                            ref={this.textFieldRef}
                         />
                     </div>
                     <div className="UserForm-right">
                         {this.props.isLocked ? (
                             <Spinner size={SpinnerSize.medium} />
                         ) : (
-                            <PrimaryButton
-                                className={"UserForm-submitButton"}
-                                type="submit"
-                                data-automation-id="test"
+                            <DefaultButton
+                                primary
                                 text="データ取得"
+                                onClick={this.onClick}
+                                split={true}
+                                style={{ height: "35px" }}
+                                menuProps={{
+                                    items: [
+                                        {
+                                            key: "forceRefresh",
+                                            name: "データの初期化",
+                                            title: "指定アカウントのデータを初期化し再取得します",
+                                            icon: "Refresh",
+                                            onclick: this.onClickRebuild
+                                        }
+                                    ]
+                                }}
                             />
                         )}
                     </div>

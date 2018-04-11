@@ -14,7 +14,16 @@ export interface UserFormContainerProps {
 
 export class UserFormContainer extends React.Component<UserFormContainerProps, {}> {
     private onSubmit = async (userName: string) => {
-        console.log("userName", userName);
+        try {
+            await context.useCase(createCreateHatebuUserUseCase()).executor(useCase => useCase.execute(userName));
+            await context
+                .useCase(createSwitchCurrentHatebuUserUseCase())
+                .executor(useCase => useCase.execute(userName));
+        } catch (error) {
+            console.error(error);
+        }
+    };
+    private onClickRebuild = async (userName: string) => {
         try {
             await context.useCase(createCreateHatebuUserUseCase()).executor(useCase => useCase.execute(userName));
             await context
@@ -34,6 +43,7 @@ export class UserFormContainer extends React.Component<UserFormContainerProps, {
                 <UserForm
                     isLocked={this.props.app.isFetching}
                     onSubmit={this.onSubmit}
+                    onClickRebuild={this.onClickRebuild}
                     userName={this.props.userFormContainer.name}
                 />
             </div>

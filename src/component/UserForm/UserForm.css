@@ -14,8 +14,8 @@
 
 .UserForm-right {
     flex-shrink: 1;
-    min-width: 96px;
-    max-width: 124px;
+    min-width: 124px;
+    max-width: 148px;
     height: 32px;
     /* center */
     display: flex;

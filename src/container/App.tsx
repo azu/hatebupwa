@@ -25,7 +25,7 @@ export class App extends React.Component {
             });
     }
 
-    private onUserNameMatch = async (args: { name: string }) => {
+    private onMatchUser = async (args: { name: string }) => {
         const userName = args.name;
         try {
             await context
@@ -47,7 +47,7 @@ export class App extends React.Component {
             <>
                 {this.state.isInitialized ? (
                     <Router currentPath={browserHistory.location.pathname} history={browserHistory}>
-                        <Route pattern={"/user/:name"} onMatch={this.onUserNameMatch} />
+                        <Route pattern={"/user/:name"} onMatch={this.onMatchUser} />
                         <Route pattern={"/home/"} onMatch={this.onMatchHome} />
                         <Route pattern={"*"} onMatch={this.onMatchOther} />
                     </Router>
