@@ -5,7 +5,7 @@
   "homepage": "https://hatebupwa.netlify.com/",
   "private": true,
   "scripts": {
-    "build": "npm-run-all build:worker build:react",
+    "build": "npm-run-all build:worker build:react sw:generate",
     "build:react": "react-scripts-ts build",
     "build:worker": "webpack --mode production --config webpack.worker.config.js",
     "precommit": "lint-staged",
@@ -14,7 +14,8 @@
     "start": "npm-run-all build:worker start:*",
     "start:react": "react-scripts-ts start",
     "test": "react-scripts-ts test --env=node",
-    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\""
+    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "sw:generate": "workbox generateSW workbox-config.js"
   },
   "prettier": {
     "printWidth": 120,
@@ -61,7 +62,8 @@
     "ts-loader": "^4.2.0",
     "typescript": "^2.8.1",
     "webpack": "^4.5.0",
-    "webpack-cli": "^2.0.14"
+    "webpack-cli": "^2.0.14",
+    "workbox-cli": "^3.0.1"
   },
   "resolutions": {
     "@types/react": "16.3.8",

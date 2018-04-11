@@ -1,6 +1,5 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import registerServiceWorker from "./registerServiceWorker";
 import { initializeIcons } from "@uifabric/icons";
 import { App } from "./container/App";
 import { Provider } from "./Context";
@@ -20,4 +19,3 @@ ReactDOM.render(
     </Provider>,
     document.getElementById("root") as HTMLElement
 );
-registerServiceWorker();

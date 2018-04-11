@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="はてなブックマーク検索アプリ">
@@ -14,12 +14,30 @@
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/img/hatenabookmark/favicon-192.png">
     <title>はてなブックマーク検索PWA</title>
-  </head>
-  <body>
-  <a class="github-ribbon" href="https://github.com/azu/hatebu-pwa"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
-    <noscript>
-      You should enable JavaScript.
-    </noscript>
-    <div id="root"></div>
-  </body>
+</head>
+<body>
+<a class="github-ribbon" href="https://github.com/azu/hatebu-pwa"><img
+        style="position: absolute; top: 0; right: 0; border: 0;"
+        src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+<noscript>
+    You should enable JavaScript.
+</noscript>
+<div id="root"></div>
+<script>
+    if ("serviceWorker" in navigator) {
+        var isLocalhost = Boolean(
+            window.location.hostname === "localhost" ||
+            // [::1] is the IPv6 localhost address.
+            window.location.hostname === "[::1]" ||
+            // 127.0.0.1/8 is considered localhost for IPv4.
+            window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
+        );
+        if (!isLocalhost) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("/sw.js");
+            });
+        }
+    }
+</script>
+</body>
 </html>

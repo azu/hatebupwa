@@ -1723,6 +1723,10 @@ cli-spinners@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-0.1.2.tgz#bb764d88e185fb9e1e6a2a1f19772318f605e31c"
 
+cli-spinners@^1.0.1:
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/cli-spinners/-/cli-spinners-1.3.1.tgz#002c1990912d0d59580c93bd36c056de99e4259a"
+
 cli-table@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/cli-table/-/cli-table-0.3.1.tgz#f53b05266a8b1a0b934b3d0821e6e2dc5914ae23"
@@ -1876,6 +1880,12 @@ commander@2.15.x, commander@^2.12.1, commander@^2.14.1, commander@^2.9.0, comman
 commander@~2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.13.0.tgz#6964bca67685df7c1f1430c584f07d7597885b9c"
+
+common-tags@^1.4.0:
+  version "1.7.2"
+  resolved "https://registry.yarnpkg.com/common-tags/-/common-tags-1.7.2.tgz#24d9768c63d253a56ecff93845b44b4df1d52771"
+  dependencies:
+    babel-runtime "^6.26.0"
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -3257,7 +3267,7 @@ fs-extra@3.0.1:
     jsonfile "^3.0.0"
     universalify "^0.1.0"
 
-fs-extra@4.0.3:
+fs-extra@4.0.3, fs-extra@^4.0.2:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-4.0.3.tgz#0d852122e5bc5beb453fb028e9c0c9bf36340c94"
   dependencies:
@@ -4334,6 +4344,12 @@ isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
 
+isemail@3.x.x:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/isemail/-/isemail-3.1.2.tgz#937cf919002077999a73ea8b1951d590e84e01dd"
+  dependencies:
+    punycode "2.x.x"
+
 isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
@@ -4705,6 +4721,14 @@ jest@22.1.4:
   resolved "https://registry.yarnpkg.com/jest/-/jest-22.1.4.tgz#9ec71373a38f40ff92a3e5e96ae85687c181bb72"
   dependencies:
     jest-cli "^22.1.4"
+
+joi@^11.1.1:
+  version "11.4.0"
+  resolved "https://registry.yarnpkg.com/joi/-/joi-11.4.0.tgz#f674897537b625e9ac3d0b7e1604c828ad913ccb"
+  dependencies:
+    hoek "4.x.x"
+    isemail "3.x.x"
+    topo "2.x.x"
 
 js-base64@^2.1.9:
   version "2.4.3"
@@ -5875,6 +5899,15 @@ ora@^0.2.3:
     cli-spinners "^0.1.2"
     object-assign "^4.0.1"
 
+ora@^1.3.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/ora/-/ora-1.4.0.tgz#884458215b3a5d4097592285f93321bb7a79e2e5"
+  dependencies:
+    chalk "^2.1.0"
+    cli-cursor "^2.1.0"
+    cli-spinners "^1.0.1"
+    log-symbols "^2.1.0"
+
 original@>=0.0.5:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/original/-/original-1.0.0.tgz#9147f93fa1696d04be61e01bd50baeaca656bd3b"
@@ -6591,13 +6624,13 @@ punycode@1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.3.2.tgz#9653a036fb7c1ee42342f2325cceefea3926c48d"
 
+punycode@2.x.x, punycode@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.0.tgz#5f863edc89b96db09074bad7947bf09056ca4e7d"
+
 punycode@^1.2.4, punycode@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
-
-punycode@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.0.tgz#5f863edc89b96db09074bad7947bf09056ca4e7d"
 
 q@^1.1.2:
   version "1.5.1"
@@ -8061,6 +8094,12 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
 
+topo@2.x.x:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/topo/-/topo-2.0.2.tgz#cd5615752539057c0dc0491a621c3bc6fbe1d182"
+  dependencies:
+    hoek "4.x.x"
+
 toposort@^1.0.0:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/toposort/-/toposort-1.0.6.tgz#c31748e55d210effc00fdcdc7d6e68d7d7bb9cec"
@@ -8795,6 +8834,102 @@ wordwrap@~0.0.2:
 wordwrap@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
+
+workbox-background-sync@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/workbox-background-sync/-/workbox-background-sync-3.0.1.tgz#4b265bb15b0f516f41d4442066090605fe1e134c"
+  dependencies:
+    workbox-core "^3.0.1"
+
+workbox-broadcast-cache-update@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/workbox-broadcast-cache-update/-/workbox-broadcast-cache-update-3.0.1.tgz#a1548fc93a7f010d9b4ee7955120779a7f8a4532"
+  dependencies:
+    workbox-core "^3.0.1"
+
+workbox-build@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/workbox-build/-/workbox-build-3.0.1.tgz#818679f4f95a36ac9d6c860f04f74936db56061b"
+  dependencies:
+    babel-runtime "^6.26.0"
+    common-tags "^1.4.0"
+    fs-extra "^4.0.2"
+    glob "^7.1.2"
+    joi "^11.1.1"
+    lodash.template "^4.4.0"
+    pretty-bytes "^4.0.2"
+    workbox-background-sync "^3.0.1"
+    workbox-broadcast-cache-update "^3.0.1"
+    workbox-cache-expiration "^3.0.1"
+    workbox-cacheable-response "^3.0.1"
+    workbox-core "^3.0.1"
+    workbox-google-analytics "^3.0.1"
+    workbox-precaching "^3.0.1"
+    workbox-routing "^3.0.1"
+    workbox-strategies "^3.0.1"
+    workbox-sw "^3.0.1"
+
+workbox-cache-expiration@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/workbox-cache-expiration/-/workbox-cache-expiration-3.0.1.tgz#0643cabb1aeabe5d63aa6e8f0ac16b579835b608"
+  dependencies:
+    workbox-core "^3.0.1"
+
+workbox-cacheable-response@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/workbox-cacheable-response/-/workbox-cacheable-response-3.0.1.tgz#a1e3f8ad8a041b1379b1d25c5e2a14d79f322277"
+  dependencies:
+    workbox-core "^3.0.1"
+
+workbox-cli@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/workbox-cli/-/workbox-cli-3.0.1.tgz#ff779f1730dccc04bc049f6bc616d828fadb2448"
+  dependencies:
+    chalk "^2.1.0"
+    common-tags "^1.4.0"
+    fs-extra "^4.0.2"
+    glob "^7.1.2"
+    inquirer "^3.3.0"
+    meow "^3.7.0"
+    ora "^1.3.0"
+    pretty-bytes "^4.0.2"
+    update-notifier "^2.3.0"
+    workbox-build "^3.0.1"
+
+workbox-core@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/workbox-core/-/workbox-core-3.0.1.tgz#83c7c39fb4b71e1f1c1d67394431fb7362756863"
+
+workbox-google-analytics@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/workbox-google-analytics/-/workbox-google-analytics-3.0.1.tgz#693a4a8d2f534796b5af172af01132a9691bddb7"
+  dependencies:
+    workbox-background-sync "^3.0.1"
+    workbox-core "^3.0.1"
+    workbox-routing "^3.0.1"
+    workbox-strategies "^3.0.1"
+
+workbox-precaching@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/workbox-precaching/-/workbox-precaching-3.0.1.tgz#768b4dec2a6b22e8c58176aaadab0c4bb9dcdde2"
+  dependencies:
+    workbox-core "^3.0.1"
+
+workbox-routing@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/workbox-routing/-/workbox-routing-3.0.1.tgz#2784d8b0eb41de57bfb330b09336b60eb12505b2"
+  dependencies:
+    workbox-core "^3.0.1"
+
+workbox-strategies@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/workbox-strategies/-/workbox-strategies-3.0.1.tgz#c2dad35bfec71839087a8aba453282600c2cb4ab"
+  dependencies:
+    workbox-core "^3.0.1"
+
+workbox-sw@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/workbox-sw/-/workbox-sw-3.0.1.tgz#c030413809ab9d558949a691eb6428ab9d621e09"
 
 worker-farm@^1.5.2:
   version "1.6.0"
