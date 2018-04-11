@@ -9,6 +9,7 @@ import { createSwitchCurrentHatebuUserUseCase } from "../use-case/SwitchCurrentH
 import { createRestoreLastSessionUseCase } from "../use-case/RestoreLastSessionUseCase";
 import { browserHistory } from "../infra/browser/browserHistory";
 import { PageVisibility } from "../component/PageVisibility/PageVisibility";
+import { Link } from "office-ui-fabric-react";
 
 export interface AppState {
     isInitialized: boolean;
@@ -78,7 +79,9 @@ export class App extends React.Component<{}, AppState> {
                 ) : null}
 
                 <div className="App">
-                    <h1 className={"App-title"}>はてなブックマーク検索</h1>
+                    <h1 className={"App-title"}>
+                        <Link href={process.env.PUBLIC_URL}>はてなブックマーク検索</Link>
+                    </h1>
                     <Consumer>
                         {state => {
                             return (
