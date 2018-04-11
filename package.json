@@ -43,7 +43,7 @@
     "react": "^16.3.1",
     "react-dom": "^16.3.1",
     "react-highlight-words": "^0.11.0",
-    "react-routing-resolver": "^2.1.1",
+    "react-routing-resolver": "^2.2.0",
     "react-scripts-ts": "2.14.0",
     "regex-combiner": "^1.0.1",
     "ulid": "^2.3.0",

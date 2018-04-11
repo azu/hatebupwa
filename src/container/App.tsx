@@ -8,10 +8,22 @@ import { createRefreshHatenaBookmarkUseCase } from "../use-case/hatebu-api/Refre
 import { createSwitchCurrentHatebuUserUseCase } from "../use-case/SwitchCurrentHatebuUserUseCase";
 import { createRestoreLastSessionUseCase } from "../use-case/RestoreLastSessionUseCase";
 import { browserHistory } from "../infra/browser/browserHistory";
+import { PageVisibility } from "../component/PageVisibility/PageVisibility";
 
-export class App extends React.Component {
+export interface AppState {
+    isInitialized: boolean;
+}
+
+export class App extends React.Component<{}, AppState> {
     state = {
-        isInitialized: false
+        isInitialized: false,
+        routeComponent: null
+    };
+
+    private onVisibleUserPage = (args: { name: string }) => {
+        console.log("onvisible", args);
+        // refresh on visible
+        context.useCase(createRefreshHatenaBookmarkUseCase()).executor(useCase => useCase.execute(args.name));
     };
 
     componentDidMount() {
@@ -47,11 +59,24 @@ export class App extends React.Component {
             <>
                 {this.state.isInitialized ? (
                     <Router currentPath={browserHistory.location.pathname} history={browserHistory}>
-                        <Route pattern={"/user/:name"} onMatch={this.onMatchUser} />
+                        <Route
+                            pattern={"/user/:name"}
+                            onMatch={this.onMatchUser}
+                            render={(args: { name: string }) => {
+                                return (
+                                    <PageVisibility
+                                        onVisible={() => {
+                                            this.onVisibleUserPage(args);
+                                        }}
+                                    />
+                                );
+                            }}
+                        />
                         <Route pattern={"/home/"} onMatch={this.onMatchHome} />
                         <Route pattern={"*"} onMatch={this.onMatchOther} />
                     </Router>
                 ) : null}
+
                 <div className="App">
                     <h1 className={"App-title"}>はてなブックマーク検索</h1>
                     <Consumer>

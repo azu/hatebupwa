@@ -64,7 +64,7 @@ export class UserForm extends React.Component<UserFormProps, {}> {
                                             name: "データの初期化",
                                             title: "指定アカウントのデータを初期化し再取得します",
                                             icon: "Refresh",
-                                            onclick: this.onClickRebuild
+                                            onClick: this.onClickRebuild
                                         }
                                     ]
                                 }}

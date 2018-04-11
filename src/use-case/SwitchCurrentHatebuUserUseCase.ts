@@ -36,17 +36,15 @@ export class SwitchCurrentHatebuUserUseCase extends UseCase {
         this.browserHistory = repo.browserHistory;
     }
 
-    shouldExecute(userName: string) {
-        return this.browserHistory.location.pathname !== `/user/${encodeURIComponent(userName)}`;
-    }
-
     async execute(userName: string) {
         const hatebu = this.repo.hatebuRepository.findByUserName(userName);
         debug("current hatebu: %o", hatebu);
         this.dispatch(new SwitchCurrentHatebuUserUseCasePayload(userName));
         // TODO: FIXME history handling
-        debug("pathname %s", browserHistory.location.pathname);
-        this.browserHistory.push(`/user/${encodeURIComponent(userName)}`);
+        if (this.browserHistory.location.pathname !== `/user/${encodeURIComponent(userName)}`) {
+            debug("push pathname %s", browserHistory.location.pathname);
+            this.browserHistory.push(`/user/${encodeURIComponent(userName)}`);
+        }
         if (hatebu) {
             const appSession = this.repo.appSessionRepository.get();
             const newSession = appSession.setCurrentUsedHatebu(hatebu);
