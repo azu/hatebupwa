@@ -56,7 +56,6 @@ export class UserForm extends React.Component<UserFormProps, {}> {
                                 text="データ取得"
                                 onClick={this.onClick}
                                 split={true}
-                                style={{ height: "35px" }}
                                 menuProps={{
                                     items: [
                                         {
