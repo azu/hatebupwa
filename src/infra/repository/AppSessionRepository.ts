@@ -42,7 +42,6 @@ export class AppSessionRepository extends NonNullableRepository<AppSession> {
 
     save(entity: AppSession) {
         // AppSession can treat a single session
-        this.clear();
         super.save(entity);
         return this.storage.setItem(entity.id.toValue(), AppSessionConverter.toJSON(entity));
     }

@@ -13,3 +13,14 @@ Hatena Bookmark search app.
 
 Open <https://hatebupwa.netlify.com/>
 
+
+## Architecture
+
+### Routing
+
+- `/`
+- `/home/`
+    - HomeScreen app start url
+    - Redirect to last used session
+- `/user/:name`
+    - Set user to session

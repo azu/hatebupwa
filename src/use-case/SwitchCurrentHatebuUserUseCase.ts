@@ -2,13 +2,15 @@ import { Payload, UseCase } from "almin";
 import { AppSessionRepository, appSessionRepository } from "../infra/repository/AppSessionRepository";
 import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository";
 import { browserHistory } from "../infra/browser/browserHistory";
+import { History } from "history";
 
 const debug = require("debug")("hatebu-pwa:SwitchCurrentHatebuUserUseCase");
 
 export const createSwitchCurrentHatebuUserUseCase = () => {
     return new SwitchCurrentHatebuUserUseCase({
         appSessionRepository,
-        hatebuRepository
+        hatebuRepository,
+        browserHistory
     });
 };
 
@@ -21,22 +23,34 @@ export class SwitchCurrentHatebuUserUseCasePayload extends Payload {
 }
 
 export class SwitchCurrentHatebuUserUseCase extends UseCase {
-    constructor(private repo: { appSessionRepository: AppSessionRepository; hatebuRepository: HatebuRepository }) {
+    private browserHistory: History;
+
+    constructor(
+        private repo: {
+            appSessionRepository: AppSessionRepository;
+            hatebuRepository: HatebuRepository;
+            browserHistory: History;
+        }
+    ) {
         super();
+        this.browserHistory = repo.browserHistory;
+    }
+
+    shouldExecute(userName: string) {
+        return this.browserHistory.location.pathname !== `/user/${encodeURIComponent(userName)}`;
     }
 
     async execute(userName: string) {
-        const appSession = this.repo.appSessionRepository.get();
-        const hatebu = this.repo.hatebuRepository.findByHatebuId(appSession.currentHatebuId);
+        const hatebu = this.repo.hatebuRepository.findByUserName(userName);
         debug("current hatebu: %o", hatebu);
         this.dispatch(new SwitchCurrentHatebuUserUseCasePayload(userName));
         // TODO: FIXME history handling
         debug("pathname %s", browserHistory.location.pathname);
-        if (browserHistory.location.pathname !== `/user/${encodeURIComponent(userName)}`) {
-            browserHistory.push(`/user/${encodeURIComponent(userName)}`);
-        }
+        this.browserHistory.push(`/user/${encodeURIComponent(userName)}`);
         if (hatebu) {
+            const appSession = this.repo.appSessionRepository.get();
             const newSession = appSession.setCurrentUsedHatebu(hatebu);
+            debug("new session %o", newSession);
             await this.repo.appSessionRepository.save(newSession);
         }
     }

@@ -19,13 +19,13 @@ export class RestoreLastSessionUseCase extends UseCase {
 
     async execute() {
         const lastSession = this.repo.appSessionRepository.get();
+        debug("last session: %o", lastSession);
         if (!lastSession) {
             return;
         }
         if (!lastSession.hatebuId) {
             return;
         }
-        debug("last session: %o", lastSession);
         const hatebu = this.repo.hatebuRepository.findByUserName(lastSession.hatebuId.toValue());
         if (!hatebu) {
             return;
