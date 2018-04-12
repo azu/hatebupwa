@@ -78,6 +78,9 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
     componentDidMount() {
         this.filterWorker = new Worker(process.env.PUBLIC_URL + "/workers/filter.js");
         this.worker = new WebworkerPromise(this.filterWorker);
+        if (this.props.autoFocus) {
+            this.focus();
+        }
     }
 
     static getDerivedStateFromProps(nextProps: HatebuSearchListProps, prevState: HatebuSearchListState) {
