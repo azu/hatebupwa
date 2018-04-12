@@ -22,7 +22,6 @@ export class App extends React.Component<{}, AppState> {
     };
 
     private onVisibleUserPage = (args: { name: string }) => {
-        console.log("onvisible", args);
         // refresh on visible
         context.useCase(createRefreshHatenaBookmarkUseCase()).executor(useCase => useCase.execute(args.name));
     };
