@@ -73,6 +73,7 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
     private filterWorker: Worker;
     private worker: any;
     private isOnComposition: boolean;
+    private textFieldRef = React.createRef<TextField>();
 
     componentDidMount() {
         this.filterWorker = new Worker(process.env.PUBLIC_URL + "/workers/filter.js");
@@ -92,7 +93,16 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
         if (this.props.items !== prevProps.items) {
             this.worker.emit("init", this.state.items);
         }
+        if (this.props.autoFocus !== prevProps.autoFocus) {
+            this.focus();
+        }
     }
+
+    public focus = () => {
+        if (this.textFieldRef.current) {
+            this.textFieldRef.current.focus();
+        }
+    };
 
     public render() {
         const { items: originalItems } = this.props;
