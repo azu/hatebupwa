@@ -41,7 +41,7 @@ export const HatebuSearchListItemComponent = (item: HatebuSearchListItemProps) =
             <div className="HatebuSearchListItem-body">
                 <div className={"HatebuSearchListItem-main"}>
                     <div className="HatebuSearchListItem-title">
-                        <Link href={item.url} data-is-focusable={false}>
+                        <Link href={item.url} target={"_blank"} data-is-focusable={false}>
                             <Highlighter
                                 highlightClassName="YourHighlightClass"
                                 searchWords={item.filterWords}
