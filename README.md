@@ -19,7 +19,7 @@ Open <https://hatebupwa.netlify.com/>
 - iOS: "Add HomesScreen" on <https://hatebupwa.netlify.com/>
 - Android: "Add HomeScreen" on <https://hatebupwa.netlify.com/>
 - mac: Download from <https://github.com/azu/hatebupwa/releases/latest>
-- other desktop: Run following commands:
+- other platform: Run following commands:
 
 ```
 git clone https://github.com/azu/hatebupwa
