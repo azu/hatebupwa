@@ -9,11 +9,6 @@
       "type": "image/svg"
     },
     {
-      "src": "./img/hatenabookmark/favicon.icns",
-      "sizes": "48x48 72x72 96x96 144x144 192x192 512x512",
-      "type": "image/icns"
-    },
-    {
       "src": "favicon.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
