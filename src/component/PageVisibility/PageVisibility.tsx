@@ -18,7 +18,7 @@ export interface PageVisibilityProps {
     onHidden?: () => any;
 }
 
-export class PageVisibility extends React.Component<PageVisibilityProps, {}> {
+export class PageVisibility extends React.PureComponent<PageVisibilityProps, {}> {
     private visibilityChange = () => {
         if (document[hidden]) {
             if (this.props.onHidden) {

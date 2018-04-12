@@ -2,6 +2,7 @@ import { Identifier, Serializer } from "ddd-base";
 import { BookmarkItem, BookmarkItemConverter, BookmarkItemJSON } from "./BookmarkItem";
 import { matchBookmarkItem } from "./BookmarkSearch";
 import { BookmarkDate } from "./BookmarkDate";
+
 export const BookmarkConverter: Serializer<Bookmark, BookmarkJSON> = {
     fromJSON(json) {
         return new Bookmark({
@@ -65,6 +66,9 @@ export class Bookmark implements BookmarkProps {
      * @returns {Bookmark}
      */
     addBookmarkItems(items: BookmarkItem[], lastUpdated = new Date()) {
+        if (items.length === 0) {
+            return this;
+        }
         return this.updateBookmarkItems(items.concat(this.items), lastUpdated);
     }
 }

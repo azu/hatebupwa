@@ -15,7 +15,7 @@ export interface AppState {
     isInitialized: boolean;
 }
 
-export class App extends React.Component<{}, AppState> {
+export class App extends React.PureComponent<{}, AppState> {
     state = {
         isInitialized: false,
         routeComponent: null

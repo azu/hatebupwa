@@ -11,7 +11,7 @@ export interface UserFormProps {
     onClickRebuild: (name: string) => void;
 }
 
-export class UserForm extends React.Component<UserFormProps, {}> {
+export class UserForm extends React.PureComponent<UserFormProps, {}> {
     private textFieldRef = React.createRef<TextField>();
     private onSubmit = (event: FormEvent<any>) => {
         event.preventDefault();

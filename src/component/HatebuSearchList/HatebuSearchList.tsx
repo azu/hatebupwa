@@ -65,7 +65,7 @@ export const HatebuSearchListItemComponent = (item: HatebuSearchListItemProps) =
     );
 };
 
-export class HatebuSearchList extends React.Component<HatebuSearchListProps, HatebuSearchListState> {
+export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps, HatebuSearchListState> {
     state = {
         filterWords: [],
         items: this.props.items

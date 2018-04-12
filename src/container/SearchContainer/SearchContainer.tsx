@@ -7,7 +7,7 @@ export interface SearchContainerProps {
     searchContainer: SearchContainerState;
 }
 
-export class SearchContainer extends React.Component<SearchContainerProps, {}> {
+export class SearchContainer extends React.PureComponent<SearchContainerProps, {}> {
     render() {
         return (
             <div className="SearchContainer">

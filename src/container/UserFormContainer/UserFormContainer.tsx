@@ -13,7 +13,7 @@ export interface UserFormContainerProps {
     userFormContainer: UserFormContainerState;
 }
 
-export class UserFormContainer extends React.Component<UserFormContainerProps, {}> {
+export class UserFormContainer extends React.PureComponent<UserFormContainerProps, {}> {
     private onSubmit = async (userName: string) => {
         try {
             await context.useCase(createCreateHatebuUserUseCase()).executor(useCase => useCase.execute(userName));
