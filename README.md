@@ -14,6 +14,12 @@ Hatena Bookmark search app.
 
 Open <https://hatebupwa.netlify.com/>
 
+### Install as App
+
+- iOS: "Add HomesScreen" on <https://hatebupwa.netlify.com/>
+- Android: "Add HomeScreen" on <https://hatebupwa.netlify.com/>
+- mac: Download from <https://github.com/azu/hatebupwa/releases/latest>
+
 ## Architecture
 
 ### Routing
