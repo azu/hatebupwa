@@ -71,15 +71,10 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
         items: this.props.items
     };
     private filterWorker: Worker;
-    private disableWorker: boolean = false;
     private worker: any;
 
     componentDidMount() {
         this.filterWorker = new Worker(process.env.PUBLIC_URL + "/workers/filter.js");
-        this.filterWorker.addEventListener("error", error => {
-            console.error("Worker Error", error);
-            this.disableWorker = true;
-        });
         this.worker = new WebworkerPromise(this.filterWorker);
     }
 
@@ -118,7 +113,7 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
                         iconName: "Filter"
                     }}
                     label={"Filter by words" + resultCountText}
-                    onBeforeChange={this.onFilterChanged}
+                    onChanged={this.onFilterChanged}
                 />
                 <List className={"HatebuSearchList-body"} items={items} onRenderCell={this.onRenderCell} />
             </FocusZone>
@@ -127,7 +122,6 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
 
     private onFilterChanged = debouncePromise((text: string) => {
         const filterWords = text.split(/\s/);
-        console.log("this.disableWorker", this.disableWorker);
         return this.worker
             .exec("filter", filterWords)
             .then((items: HatebuSearchListItem[]) => {
