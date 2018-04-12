@@ -105,3 +105,4 @@ crashlytics-build.properties
 
 /lib
 /public/workers/
+/dist/
