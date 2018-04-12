@@ -10,6 +10,7 @@ import { createRestoreLastSessionUseCase } from "../use-case/RestoreLastSessionU
 import { browserHistory } from "../infra/browser/browserHistory";
 import { PageVisibility } from "../component/PageVisibility/PageVisibility";
 import { Link } from "office-ui-fabric-react";
+import { FocusFilterTextFieldUseCase } from "../use-case/FocusFilterTextFieldUseCase";
 
 export interface AppState {
     isInitialized: boolean;
@@ -21,9 +22,10 @@ export class App extends React.Component<{}, AppState> {
         routeComponent: null
     };
 
-    private onVisibleUserPage = (args: { name: string }) => {
+    private onVisibleUserPage = async (args: { name: string }) => {
         // refresh on visible
-        context.useCase(createRefreshHatenaBookmarkUseCase()).executor(useCase => useCase.execute(args.name));
+        await context.useCase(createRefreshHatenaBookmarkUseCase()).executor(useCase => useCase.execute(args.name));
+        await context.useCase(new FocusFilterTextFieldUseCase()).execute();
     };
 
     componentDidMount() {
@@ -44,6 +46,7 @@ export class App extends React.Component<{}, AppState> {
                 .useCase(createSwitchCurrentHatebuUserUseCase())
                 .executor(useCase => useCase.execute(userName));
             await context.useCase(createRefreshHatenaBookmarkUseCase()).executor(useCase => useCase.execute(userName));
+            await context.useCase(new FocusFilterTextFieldUseCase()).execute();
         } catch (error) {
             console.error(error);
         }
