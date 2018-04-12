@@ -6766,9 +6766,9 @@ react-highlight-words@^0.11.0:
     highlight-words-core "^1.2.0"
     prop-types "^15.5.8"
 
-react-routing-resolver@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/react-routing-resolver/-/react-routing-resolver-2.2.0.tgz#a958893ba3344b2c60a34e112e559394f29652ad"
+react-routing-resolver@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-routing-resolver/-/react-routing-resolver-3.0.0.tgz#215e093161c1d369e5f4bffae0c146157d5410ed"
   dependencies:
     "@types/history" "^4.6.2"
     "@types/react" "^16.3.5"

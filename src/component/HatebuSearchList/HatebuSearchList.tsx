@@ -16,6 +16,7 @@ const Highlighter = require("react-highlight-words");
 const WebworkerPromise = require("webworker-promise");
 
 export interface HatebuSearchListProps {
+    autoFocus: boolean;
     items: HatebuSearchListItem[];
 }
 
@@ -112,6 +113,7 @@ export class HatebuSearchList extends React.Component<HatebuSearchListProps, Hat
                 <TextField
                     inputClassName={"HatebuSearchList-searchBoxInput"}
                     className={"HatebuSearchList-searchBox"}
+                    autoFocus={this.props.autoFocus}
                     iconProps={{
                         iconName: "Filter"
                     }}

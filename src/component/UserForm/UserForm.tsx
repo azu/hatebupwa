@@ -4,6 +4,7 @@ import { DefaultButton, Label, Spinner, SpinnerSize, TextField } from "office-ui
 
 export interface UserFormProps {
     userName?: string;
+    autoFocus: boolean;
     // lock input and button
     isLocked: boolean;
     onSubmit: (name: string) => void;
@@ -44,6 +45,7 @@ export class UserForm extends React.Component<UserFormProps, {}> {
                             placeholder={"hatenabookmark"}
                             autoComplete="off"
                             disabled={this.props.isLocked}
+                            autoFocus={this.props.autoFocus}
                             ref={this.textFieldRef}
                         />
                     </div>

@@ -19,7 +19,7 @@ export const AppStoreGroup = new StoreGroup({
 export const context = new Context({
     store: AppStoreGroup,
     options: {
-        strict: true,
+        strict: false,
         performanceProfile: true
     }
 });

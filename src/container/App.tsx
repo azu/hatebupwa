@@ -59,7 +59,7 @@ export class App extends React.Component<{}, AppState> {
         return (
             <>
                 {this.state.isInitialized ? (
-                    <Router currentPath={browserHistory.location.pathname} history={browserHistory}>
+                    <Router history={browserHistory}>
                         <Route
                             pattern={"/user/:name"}
                             onMatch={this.onMatchUser}
