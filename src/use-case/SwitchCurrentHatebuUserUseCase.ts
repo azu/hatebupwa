@@ -4,7 +4,7 @@ import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRe
 import { browserHistory } from "../infra/browser/browserHistory";
 import { History } from "history";
 
-const debug = require("debug")("hatebu-pwa:SwitchCurrentHatebuUserUseCase");
+const debug = require("debug")("hatebupwa:SwitchCurrentHatebuUserUseCase");
 
 export const createSwitchCurrentHatebuUserUseCase = () => {
     return new SwitchCurrentHatebuUserUseCase({

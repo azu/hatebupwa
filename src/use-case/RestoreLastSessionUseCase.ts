@@ -3,7 +3,7 @@ import { createSwitchCurrentHatebuUserUseCase } from "./SwitchCurrentHatebuUserU
 import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository";
 import { AppSessionRepository, appSessionRepository } from "../infra/repository/AppSessionRepository";
 
-const debug = require("debug")("hatebu-pwa");
+const debug = require("debug")("hatebupwa");
 
 export const createRestoreLastSessionUseCase = () => {
     return new RestoreLastSessionUseCase({

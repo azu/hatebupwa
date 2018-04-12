@@ -8,7 +8,7 @@ import {
     StartFetchHatenaBookmarkPayload
 } from "./FetchHatenaBookmarkPayload";
 
-const debug = require("debug")("hatebu-pwa");
+const debug = require("debug")("hatebupwa");
 export const createFetchInitialHatenaBookmarkUseCase = () => {
     return new InitializeWithNewHatenaBookmarkUseCase({
         hatebuRepository
