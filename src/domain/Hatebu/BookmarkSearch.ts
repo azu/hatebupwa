@@ -8,7 +8,10 @@ const stringifyBookmarkItem = (bookmark: BookmarkItem): string => {
 };
 
 const memorizedStringifyBookmarkItem = memoize(stringifyBookmarkItem);
-const memoriezdRegexCombiner = memoize(regexCombiner);
+const memoriezdRegexCombiner = memoize((searchWord: string[]) => {
+    const pattern = regexCombiner(searchWord);
+    return new RegExp(pattern.source, "i");
+});
 export const matchBookmarkItem = (bookmark: BookmarkItem, searchWords: string[]): boolean => {
     const text = memorizedStringifyBookmarkItem(bookmark);
     const combined = memoriezdRegexCombiner(searchWords);
@@ -20,6 +23,6 @@ export const matchBookmarkItem = (bookmark: BookmarkItem, searchWords: string[])
     }
     // multiple words as & search
     return searchWords.every(searchWord => {
-        return text.toLowerCase().indexOf(searchWord) !== -1;
+        return text.indexOf(searchWord.toLowerCase()) !== -1;
     });
 };

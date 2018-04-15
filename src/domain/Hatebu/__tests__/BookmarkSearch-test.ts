@@ -19,6 +19,12 @@ describe("BookmarkSearch", () => {
             assert.ok(matchBookmarkItem(bookmark, ["comment"]));
             assert.ok(matchBookmarkItem(bookmark, ["example.com"]));
         });
+        it("should accept case-insensitive word", () => {
+            const bookmark = createExampleBookmark();
+            assert.ok(matchBookmarkItem(bookmark, ["TITLE"]));
+            assert.ok(matchBookmarkItem(bookmark, ["COMMENT"]));
+            assert.ok(matchBookmarkItem(bookmark, ["EXAMPLE.COM"]));
+        });
         it("should return false if match the searchWords", () => {
             const bookmark = createExampleBookmark();
             assert.strictEqual(matchBookmarkItem(bookmark, ["nomatch"]), false);
