@@ -1,3 +1,4 @@
+http://hatebupwa.netlify.com/* https://hatebupwa.netlify.com/:splat 301!
 /user/:name /index.html                  200
 /home/       /index.html                  200
 /hatebu/*  http://b.hatena.ne.jp/:splat  200
