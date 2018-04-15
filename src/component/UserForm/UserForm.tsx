@@ -55,7 +55,7 @@ export class UserForm extends React.PureComponent<UserFormProps, {}> {
                         ) : (
                             <DefaultButton
                                 primary
-                                text="データ取得"
+                                text="取得"
                                 onClick={this.onClick}
                                 split={true}
                                 menuProps={{
