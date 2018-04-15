@@ -4,7 +4,7 @@ const memoize = require("micro-memoize").default;
 const regexCombiner = require("regex-combiner");
 
 const stringifyBookmarkItem = (bookmark: BookmarkItem): string => {
-    return `${bookmark.title}\t${bookmark.url}\t${bookmark.comment}\t${bookmark.date.toString()}`;
+    return `${bookmark.title}\t${bookmark.url}\t${bookmark.comment}\t${bookmark.date.toString()}`.toLowerCase();
 };
 
 const memorizedStringifyBookmarkItem = memoize(stringifyBookmarkItem);
@@ -20,6 +20,6 @@ export const matchBookmarkItem = (bookmark: BookmarkItem, searchWords: string[])
     }
     // multiple words as & search
     return searchWords.every(searchWord => {
-        return text.indexOf(searchWord) !== -1;
+        return text.toLowerCase().indexOf(searchWord) !== -1;
     });
 };
