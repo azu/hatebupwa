@@ -7,6 +7,7 @@ import { createFetchInitialHatenaBookmarkUseCase } from "../../use-case/hatebu-a
 import { AppState } from "../AppStore";
 import { createSwitchCurrentHatebuUserUseCase } from "../../use-case/SwitchCurrentHatebuUserUseCase";
 import { FocusMatcher } from "../../component/FocusMatcher/FocusMatcher";
+import { createRefreshHatenaBookmarkUseCase } from "../../use-case/hatebu-api/RefreshHatenaBookmarkUseCase";
 
 export interface UserFormContainerProps {
     app: AppState;
@@ -16,10 +17,25 @@ export interface UserFormContainerProps {
 export class UserFormContainer extends React.PureComponent<UserFormContainerProps, {}> {
     private onSubmit = async (userName: string) => {
         try {
-            await context.useCase(createCreateHatebuUserUseCase()).executor(useCase => useCase.execute(userName));
-            await context
-                .useCase(createSwitchCurrentHatebuUserUseCase())
-                .executor(useCase => useCase.execute(userName));
+            context
+                .useCase(createCreateHatebuUserUseCase())
+                .executor(useCase => useCase.execute(userName))
+                .then(
+                    () => {
+                        return context
+                            .useCase(createSwitchCurrentHatebuUserUseCase())
+                            .executor(useCase => useCase.execute(userName));
+                    },
+                    async () => {
+                        await context
+                            .useCase(createSwitchCurrentHatebuUserUseCase())
+                            .executor(useCase => useCase.execute(userName));
+                        // already have hatebu
+                        return context
+                            .useCase(createRefreshHatenaBookmarkUseCase())
+                            .executor(useCase => useCase.execute(userName));
+                    }
+                );
         } catch (error) {
             console.error(error);
         }

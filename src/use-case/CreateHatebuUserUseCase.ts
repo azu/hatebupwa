@@ -13,12 +13,11 @@ export class CreateHatebuUserUseCase extends UseCase {
         super();
     }
 
-    shouldExecute(userName: string) {
-        const existingHatebu = this.repo.hatebuRepository.findByUserName(userName);
-        return existingHatebu === undefined;
-    }
-
     execute(userName: string) {
+        const existingHatebu = this.repo.hatebuRepository.findByUserName(userName);
+        if (existingHatebu) {
+            throw new Error(`Hatebu(${userName}) is already created`);
+        }
         const hatebu = createHatebu(userName);
         return this.repo.hatebuRepository.save(hatebu);
     }
