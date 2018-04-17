@@ -1,4 +1,8 @@
+# Force HTTPS
 http://hatebupwa.netlify.com/* https://hatebupwa.netlify.com/:splat 301!
-/user/:name /index.html                  200
-/home/       /index.html                  200
+# Routing
+/user/:name  /index.html                 200
+/home/       /index.html                 200
+# CORS proxy
+# https://www.netlify.com/docs/redirects/#proxying
 /hatebu/*  http://b.hatena.ne.jp/:splat  200
