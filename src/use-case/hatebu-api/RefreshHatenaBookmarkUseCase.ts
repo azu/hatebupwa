@@ -33,7 +33,7 @@ export class RefreshHatenaBookmarkUseCase extends UseCase {
         this.dispatch(new StartFetchHatenaBookmarkPayload());
         return fetchHatenaBookmark(userName, lastUpdatedDate)
             .then(async bookmarkRawItems => {
-                debug("finish fetching items(%s)", bookmarkRawItems.length);
+                debug("finish fetching items(%s) and add items to list", bookmarkRawItems.length);
                 const updatedHatebu = hatebu.addBookmarkItems(convertItems(bookmarkRawItems));
                 await this.repo.hatebuRepository.save(updatedHatebu);
                 this.dispatch(new FinishFetchHatenaBookmarkPayload());
