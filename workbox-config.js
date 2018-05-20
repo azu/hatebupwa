@@ -15,7 +15,8 @@ module.exports = {
             options: {
                 // Only cache 10 images.
                 expiration: {
-                    maxEntries: 10
+                    maxEntries: 10,
+                    cacheName: "hatebu-pwa-external-resource-cache"
                 }
             }
         }
