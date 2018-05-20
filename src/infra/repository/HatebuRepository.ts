@@ -31,7 +31,7 @@ export class HatebuRepository extends NullableRepository<Hatebu> {
                 return HatebuConverter.fromJSON(json);
             })
             .forEach(hatebu => {
-                this.map.set(hatebu.id.toValue(), hatebu);
+                this.map.set(hatebu.props.id.toValue(), hatebu);
                 lastValue = hatebu;
             });
         return lastValue;
@@ -47,7 +47,7 @@ export class HatebuRepository extends NullableRepository<Hatebu> {
 
     save(entity: Hatebu) {
         super.save(entity);
-        return this.storage.setItem(entity.id.toValue(), HatebuConverter.toJSON(entity));
+        return this.storage.setItem(entity.props.id.toValue(), HatebuConverter.toJSON(entity));
     }
 }
 

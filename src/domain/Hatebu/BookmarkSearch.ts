@@ -4,7 +4,11 @@ const memoize = require("micro-memoize").default;
 const regexCombiner = require("regex-combiner");
 
 const stringifyBookmarkItem = (bookmark: BookmarkItem): string => {
-    return `${bookmark.title}\t${bookmark.url}\t${bookmark.comment}\t${bookmark.date.toString()}`.toLowerCase();
+    return `${bookmark.props.title}\t${bookmark.props.url}\t${
+        bookmark.props.comment
+    }\t${bookmark.props.date.toString()}`
+        .toString()
+        .toLowerCase();
 };
 
 const memorizedStringifyBookmarkItem = memoize(stringifyBookmarkItem);

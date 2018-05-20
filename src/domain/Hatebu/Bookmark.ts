@@ -1,4 +1,4 @@
-import { Identifier, Serializer } from "ddd-base";
+import { Identifier, Serializer, ValueObject } from "ddd-base";
 import { BookmarkItem, BookmarkItemConverter, BookmarkItemJSON } from "./BookmarkItem";
 import { matchBookmarkItem } from "./BookmarkSearch";
 import { BookmarkDate } from "./BookmarkDate";
@@ -12,8 +12,8 @@ export const BookmarkConverter: Serializer<Bookmark, BookmarkJSON> = {
     },
     toJSON(entity) {
         return {
-            items: entity.items.map(item => BookmarkItemConverter.toJSON(item)),
-            lastUpdated: entity.lastUpdated.unixTime
+            items: entity.props.items.map(item => BookmarkItemConverter.toJSON(item)),
+            lastUpdated: entity.props.lastUpdated.unixTime
         };
     }
 };
@@ -30,13 +30,9 @@ export interface BookmarkProps {
     lastUpdated: BookmarkDate;
 }
 
-export class Bookmark implements BookmarkProps {
-    items: BookmarkItem[];
-    lastUpdated: BookmarkDate;
-
-    constructor(props: BookmarkProps) {
-        this.items = props.items;
-        this.lastUpdated = props.lastUpdated;
+export class Bookmark extends ValueObject<BookmarkProps> {
+    get totalCount() {
+        return this.props.items.length;
     }
 
     /**
@@ -48,12 +44,12 @@ export class Bookmark implements BookmarkProps {
     }
 
     findItemsByMatch(predicate: (item: BookmarkItem) => boolean) {
-        return this.items.filter(predicate);
+        return this.props.items.filter(predicate);
     }
 
     updateBookmarkItems(items: BookmarkItem[], lastUpdated = new Date()) {
         return new Bookmark({
-            ...(this as BookmarkProps),
+            ...this.props,
             items: items,
             lastUpdated: new BookmarkDate(lastUpdated)
         });
@@ -69,6 +65,6 @@ export class Bookmark implements BookmarkProps {
         if (items.length === 0) {
             return this;
         }
-        return this.updateBookmarkItems(items.concat(this.items), lastUpdated);
+        return this.updateBookmarkItems(items.concat(this.props.items), lastUpdated);
     }
 }

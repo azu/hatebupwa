@@ -34,8 +34,8 @@ export class SearchContainerStore extends Store<SearchContainerState> {
             }
             this.setState({
                 name: this.state.name,
-                items: hatebu.bookmark.items,
-                totalCount: hatebu.bookmark.items.length
+                items: hatebu.bookmarkItems,
+                totalCount: hatebu.bookmarkTotalCount
             });
         });
     }
@@ -52,8 +52,8 @@ export class SearchContainerStore extends Store<SearchContainerState> {
             }
             this.setState({
                 name: hatebu.name,
-                items: hatebu.bookmark.items,
-                totalCount: hatebu.bookmark.items.length
+                items: hatebu.bookmarkItems,
+                totalCount: hatebu.bookmarkTotalCount
             });
         }
     }

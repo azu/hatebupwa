@@ -25,7 +25,7 @@ export class RefreshHatenaBookmarkUseCase extends UseCase {
         if (!hatebu) {
             throw new Error("Hatebu user should be created before fetch.");
         }
-        const lastUpdatedDate = hatebu.bookmark.lastUpdated;
+        const lastUpdatedDate = hatebu.props.bookmark.props.lastUpdated;
         debug(
             "start fetching items since %s",
             lastUpdatedDate.isInitialDate ? "initial date" : lastUpdatedDate.toUTCString()

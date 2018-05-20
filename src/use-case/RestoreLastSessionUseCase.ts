@@ -23,10 +23,10 @@ export class RestoreLastSessionUseCase extends UseCase {
         if (!lastSession) {
             return;
         }
-        if (!lastSession.hatebuId) {
+        if (!lastSession.props.hatebuId) {
             return;
         }
-        const hatebu = this.repo.hatebuRepository.findByUserName(lastSession.hatebuId.toValue());
+        const hatebu = this.repo.hatebuRepository.findByUserName(lastSession.props.hatebuId.toValue());
         if (!hatebu) {
             return;
         }
