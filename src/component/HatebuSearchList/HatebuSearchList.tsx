@@ -70,9 +70,9 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
         filterWords: [],
         items: this.props.items
     };
-    private filterWorker: Worker;
+    private filterWorker!: Worker;
+    private isOnComposition!: boolean;
     private worker: any;
-    private isOnComposition: boolean;
     private textFieldRef = React.createRef<TextField>();
 
     componentDidMount() {

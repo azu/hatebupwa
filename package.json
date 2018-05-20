@@ -31,7 +31,7 @@
     "almin": "^0.16.0",
     "almin-logger": "^6.1.5",
     "date-fns": "^1.29.0",
-    "ddd-base": "^0.5.2",
+    "ddd-base": "^0.6.0",
     "debounce-promise": "^3.1.0",
     "debug": "^3.1.0",
     "hatebu-mydata-parser": "^1.0.0",

@@ -26,11 +26,19 @@ export interface BookmarkJSON {
 export class BookmarkIdentifier extends Identifier<string> {}
 
 export interface BookmarkProps {
-    items: BookmarkItem[];
-    lastUpdated: BookmarkDate;
+    readonly items: BookmarkItem[];
+    readonly lastUpdated: BookmarkDate;
 }
 
-export class Bookmark extends ValueObject<BookmarkProps> {
+// declaration merging
+export interface Bookmark extends BookmarkProps {}
+
+export class Bookmark extends ValueObject<BookmarkProps> implements Bookmark {
+    constructor(props: BookmarkProps) {
+        super(props);
+        Object.assign(this, props);
+    }
+
     get totalCount() {
         return this.props.items.length;
     }

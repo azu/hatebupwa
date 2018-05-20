@@ -29,7 +29,14 @@ export interface HatebuProps {
     readonly bookmark: Bookmark;
 }
 
-export class Hatebu extends Entity<HatebuProps> {
+export interface Hatebu extends HatebuProps {}
+
+export class Hatebu extends Entity<HatebuProps> implements HatebuProps {
+    constructor(props: HatebuProps) {
+        super(props);
+        Object.assign(this, props);
+    }
+
     get name() {
         return this.props.id.toValue();
     }
