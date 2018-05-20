@@ -30,7 +30,7 @@ export class AppSessionRepository extends NonNullableRepository<AppSession> {
             return AppSessionConverter.fromJSON(json);
         });
         entities.forEach(entity => {
-            this.map.set(entity.id.toValue(), entity);
+            this.map.set(entity.props.id.toValue(), entity);
         });
         // TODO: NonNullableRepository should have set lastUsed Value
         if (entities.length === 0) {
@@ -43,7 +43,7 @@ export class AppSessionRepository extends NonNullableRepository<AppSession> {
     save(entity: AppSession) {
         // AppSession can treat a single session
         super.save(entity);
-        return this.storage.setItem(entity.id.toValue(), AppSessionConverter.toJSON(entity));
+        return this.storage.setItem(entity.props.id.toValue(), AppSessionConverter.toJSON(entity));
     }
 }
 

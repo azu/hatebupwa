@@ -32,7 +32,7 @@ export interface HatebuSearchListItemProps extends HatebuSearchListItem {
 export const HatebuSearchListItemComponent = (item: HatebuSearchListItemProps) => {
     const onKeyPress = (event: KeyboardEvent<any>) => {
         if (event.key === "Enter") {
-            window.open(item.url);
+            window.open(item.props.url);
         }
     };
 
@@ -41,12 +41,12 @@ export const HatebuSearchListItemComponent = (item: HatebuSearchListItemProps) =
             <div className="HatebuSearchListItem-body">
                 <div className={"HatebuSearchListItem-main"}>
                     <div className="HatebuSearchListItem-title">
-                        <Link href={item.url} target={"_blank"} data-is-focusable={false}>
+                        <Link href={item.props.url} target={"_blank"} data-is-focusable={false}>
                             <Highlighter
                                 highlightClassName="YourHighlightClass"
                                 searchWords={item.filterWords}
                                 autoEscape={true}
-                                textToHighlight={item.title}
+                                textToHighlight={item.props.title}
                             />
                         </Link>
                     </div>
@@ -55,11 +55,11 @@ export const HatebuSearchListItemComponent = (item: HatebuSearchListItemProps) =
                             highlightClassName="YourHighlightClass"
                             searchWords={item.filterWords}
                             autoEscape={true}
-                            textToHighlight={item.comment}
+                            textToHighlight={item.props.comment}
                         />
                     </div>
                 </div>
-                <div className="HatebuSearchListItem-timestamp">{format(item.date.date, "YYYY-MM-DD HH:mm")}</div>
+                <div className="HatebuSearchListItem-timestamp">{format(item.props.date.date, "YYYY-MM-DD HH:mm")}</div>
             </div>
         </div>
     );
@@ -70,9 +70,9 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
         filterWords: [],
         items: this.props.items
     };
-    private filterWorker: Worker;
+    private filterWorker!: Worker;
+    private isOnComposition!: boolean;
     private worker: any;
-    private isOnComposition: boolean;
     private textFieldRef = React.createRef<TextField>();
 
     componentDidMount() {

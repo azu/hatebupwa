@@ -11,8 +11,8 @@ export const HatebuConverter: Serializer<Hatebu, HatebuJSON> = {
     },
     toJSON(entity) {
         return {
-            id: entity.id.toValue(),
-            bookmark: BookmarkConverter.toJSON(entity.bookmark)
+            id: entity.props.id.toValue(),
+            bookmark: BookmarkConverter.toJSON(entity.props.bookmark)
         };
     }
 };
@@ -29,29 +29,37 @@ export interface HatebuProps {
     readonly bookmark: Bookmark;
 }
 
-export class Hatebu extends Entity<HatebuIdentifier> implements HatebuProps {
-    readonly bookmark: Bookmark;
+export interface Hatebu extends HatebuProps {}
 
-    constructor(args: HatebuProps) {
-        super(args.id);
-        this.bookmark = args.bookmark;
+export class Hatebu extends Entity<HatebuProps> implements HatebuProps {
+    constructor(props: HatebuProps) {
+        super(props);
+        Object.assign(this, props);
     }
 
     get name() {
-        return this.id.toValue();
+        return this.props.id.toValue();
+    }
+
+    get bookmarkItems() {
+        return this.props.bookmark.props.items;
+    }
+
+    get bookmarkTotalCount() {
+        return this.props.bookmark.totalCount;
     }
 
     addBookmarkItems(bookmarkItems: BookmarkItem[]) {
         return new Hatebu({
-            ...(this as HatebuProps),
-            bookmark: this.bookmark.addBookmarkItems(bookmarkItems)
+            ...this.props,
+            bookmark: this.props.bookmark.addBookmarkItems(bookmarkItems)
         });
     }
 
     updateBookmarkItems(bookmarkItems: BookmarkItem[]) {
         return new Hatebu({
-            ...(this as HatebuProps),
-            bookmark: this.bookmark.updateBookmarkItems(bookmarkItems)
+            ...this.props,
+            bookmark: this.props.bookmark.updateBookmarkItems(bookmarkItems)
         });
     }
 }
