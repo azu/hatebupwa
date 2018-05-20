@@ -1,60 +1,40 @@
-import { ComponentType, PureComponent, ReactNode } from "react";
-import * as React from "react";
 import { Context } from "almin";
-// TODO: extends https://github.com/DefinitelyTyped/DefinitelyTyped/pull/24780
-declare namespace ReactModified {
-    // Context Api
-    type ReactContextProvider<T> = ComponentType<{ value: T }>;
-    type ReactContextConsumer<T> = ComponentType<{ children: (value: T) => ReactNode }>;
+import * as React from "react";
 
-    interface ReactContext<T> {
-        Provider: ReactContextProvider<T>;
-        Consumer: ReactContextConsumer<T>;
-    }
-
-    function createContext<T>(value: T): ReactContext<T>;
-}
-
-/**
- * $PropertyType
- * @desc get the type of property of an object at a given key `K`
- * @see https://flow.org/en/docs/types/utilities/#toc-propertytype
- */
-export type $PropertyType<T, K extends keyof T> = T[K];
-
-let StateContext: null | ReactModified.ReactContext<any> = null;
+let StateContext: null | React.Context<any> = null;
 // Provider
 export type ProviderProps = {
     inject?: any;
-    children: ReactNode;
+    children: React.ReactNode;
 };
+
 // Consumer
 export type ConsumerProps<T> = {
-    children: (props: T) => ReactNode;
+    children: (props: T) => React.ReactNode;
 };
 
 // Subscribe
-export type SubscribeProps<T, StateName> = {
-    to: StateName;
-    children: (props: T) => ReactNode;
+export type SubscribeProps<T, K = any> = {
+    query: (state: T) => K;
+    children: (props: K) => React.ReactNode;
 };
 
-export function createContext<T>(context: Context<T>) {
-    const initialState = context.getState();
-    StateContext = (React as any).createContext(initialState);
+export function createContext<T>(alminContext: Context<T>) {
+    const initialState = alminContext.getState();
+    StateContext = React.createContext(initialState);
 
     // Provider
-    class Provider extends PureComponent<ProviderProps> {
+    class Provider extends React.PureComponent<ProviderProps> {
         state = initialState;
         private releaseHandler: () => void;
 
         constructor(props: ProviderProps) {
             super(props);
-            this.releaseHandler = context.onChange(this.onChange);
+            this.releaseHandler = alminContext.onChange(this.onChange);
         }
 
         private onChange = () => {
-            this.setState(context.getState());
+            this.setState(alminContext.getState());
         };
 
         componentWillUnmount() {
@@ -70,7 +50,7 @@ export function createContext<T>(context: Context<T>) {
     }
 
     // Consumer
-    class Consumer extends PureComponent<ConsumerProps<T>> {
+    class Consumer extends React.PureComponent<ConsumerProps<T>> {
         render() {
             if (StateContext === null) {
                 throw new Error(
@@ -88,13 +68,12 @@ export function createContext<T>(context: Context<T>) {
         }
     }
 
-    // TODO: Subscribe wont work
-    class Subscribe<Key extends keyof T> extends PureComponent<SubscribeProps<$PropertyType<T, Key>, Key>> {
+    class Subscribe extends React.PureComponent<SubscribeProps<T>> {
         render() {
             return (
                 <Consumer>
                     {value => {
-                        const stateValue = value[this.props.to];
+                        const stateValue = this.props.query(value);
                         return this.props.children(stateValue);
                     }}
                 </Consumer>

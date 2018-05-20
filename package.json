@@ -27,7 +27,7 @@
     "@types/debug": "^0.0.30",
     "@types/history": "^4.6.2",
     "@types/prop-types": "^15.5.2",
-    "@uifabric/icons": "^5.7.0",
+    "@uifabric/icons": "^5.7.1",
     "almin": "^0.16.0",
     "almin-logger": "^6.1.5",
     "date-fns": "^1.29.0",
@@ -40,12 +40,12 @@
     "localforage": "^1.7.1",
     "localforage-memoryStorageDriver": "^0.9.2",
     "micro-memoize": "^2.0.1",
-    "office-ui-fabric-react": "^5.80.0",
-    "react": "^16.3.1",
-    "react-dom": "^16.3.1",
+    "office-ui-fabric-react": "^5.91.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "react-highlight-words": "^0.11.0",
     "react-routing-resolver": "3.0.0",
-    "react-scripts-ts": "2.14.0",
+    "react-scripts-ts": "2.15.1",
     "regex-combiner": "^1.0.1",
     "ulid": "^2.3.0",
     "webworker-promise": "^0.4.1"
@@ -53,7 +53,7 @@
   "devDependencies": {
     "@types/jest": "^22.2.2",
     "@types/node": "^9.6.2",
-    "@types/react": "16.3.8",
+    "@types/react": "16.3.13",
     "@types/react-dom": "16.0.5",
     "express": "^4.16.3",
     "husky": "^0.14.3",
@@ -63,9 +63,9 @@
     "prettier": "^1.11.1",
     "ts-loader": "^4.2.0",
     "typescript": "^2.8.1",
-    "webpack": "^4.5.0",
-    "webpack-cli": "^2.0.14",
-    "workbox-cli": "^3.0.1"
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15",
+    "workbox-cli": "^3.1.0"
   },
   "resolutions": {
     "@types/react": "16.3.8",
