@@ -7,7 +7,6 @@ import { createFetchInitialHatenaBookmarkUseCase } from "../../use-case/hatebu-a
 import { AppState } from "../AppStore";
 import { createSwitchCurrentHatebuUserUseCase } from "../../use-case/SwitchCurrentHatebuUserUseCase";
 import { FocusMatcher } from "../../component/FocusMatcher/FocusMatcher";
-import { createRefreshHatenaBookmarkUseCase } from "../../use-case/hatebu-api/RefreshHatenaBookmarkUseCase";
 
 export interface UserFormContainerProps {
     app: AppState;
@@ -25,9 +24,7 @@ export class UserFormContainer extends React.PureComponent<UserFormContainerProp
                         return context.useCase(createSwitchCurrentHatebuUserUseCase()).execute(userName);
                     },
                     async () => {
-                        await context.useCase(createSwitchCurrentHatebuUserUseCase()).execute(userName);
-                        // already have hatebu
-                        return context.useCase(createRefreshHatenaBookmarkUseCase()).execute(userName);
+                        return context.useCase(createSwitchCurrentHatebuUserUseCase()).execute(userName);
                     }
                 );
         } catch (error) {
@@ -36,13 +33,14 @@ export class UserFormContainer extends React.PureComponent<UserFormContainerProp
     };
     private onClickRebuild = async (userName: string) => {
         try {
-            await context.useCase(createCreateHatebuUserUseCase()).executor(useCase => useCase.execute(userName));
             await context
-                .useCase(createSwitchCurrentHatebuUserUseCase())
-                .executor(useCase => useCase.execute(userName));
-            await context
-                .useCase(createFetchInitialHatenaBookmarkUseCase())
-                .executor(useCase => useCase.execute(userName));
+                .useCase(createCreateHatebuUserUseCase())
+                .execute(userName)
+                .catch(error => {
+                    console.warn("Already create, but it can be ignored", error);
+                });
+            await context.useCase(createSwitchCurrentHatebuUserUseCase()).execute(userName);
+            await context.useCase(createFetchInitialHatenaBookmarkUseCase()).execute(userName);
         } catch (error) {
             console.error(error);
         }
