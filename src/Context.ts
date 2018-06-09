@@ -1,8 +1,8 @@
 import { Context, StoreGroup } from "almin";
+import { createReactContext } from "@almin/react-context";
 import { UserFormContainerStore } from "./container/UserFormContainer/UserFormContainerStore";
 import { SearchContainerStore } from "./container/SearchContainer/SearchContainerStore";
 import { AlminLogger } from "almin-logger";
-import { createContext } from "./AlminContext";
 import { hatebuRepository } from "./infra/repository/HatebuRepository";
 import { AppStore } from "./container/AppStore";
 
@@ -29,5 +29,5 @@ if (process.env.NODE_ENV !== "production") {
     logger.startLogging(context);
 }
 
-const { Provider, Consumer, Subscribe } = createContext(context);
-export { Provider, Consumer, Subscribe };
+const { Provider, Consumer } = createReactContext(context);
+export { Provider, Consumer };

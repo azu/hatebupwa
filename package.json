@@ -24,12 +24,13 @@
     "tabWidth": 4
   },
   "dependencies": {
+    "@almin/react-context": "^1.1.1",
     "@types/debug": "^0.0.30",
     "@types/history": "^4.6.2",
     "@types/prop-types": "^15.5.2",
     "@uifabric/icons": "^5.7.1",
-    "almin": "^0.16.0",
-    "almin-logger": "^6.1.5",
+    "almin": "^0.17.1",
+    "almin-logger": "^6.2.1",
     "date-fns": "^1.29.0",
     "ddd-base": "^0.6.0",
     "debounce-promise": "^3.1.0",
