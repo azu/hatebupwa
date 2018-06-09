@@ -22,18 +22,12 @@ export class UserFormContainer extends React.PureComponent<UserFormContainerProp
                 .executor(useCase => useCase.execute(userName))
                 .then(
                     () => {
-                        return context
-                            .useCase(createSwitchCurrentHatebuUserUseCase())
-                            .executor(useCase => useCase.execute(userName));
+                        return context.useCase(createSwitchCurrentHatebuUserUseCase()).execute(userName);
                     },
                     async () => {
-                        await context
-                            .useCase(createSwitchCurrentHatebuUserUseCase())
-                            .executor(useCase => useCase.execute(userName));
+                        await context.useCase(createSwitchCurrentHatebuUserUseCase()).execute(userName);
                         // already have hatebu
-                        return context
-                            .useCase(createRefreshHatenaBookmarkUseCase())
-                            .executor(useCase => useCase.execute(userName));
+                        return context.useCase(createRefreshHatenaBookmarkUseCase()).execute(userName);
                     }
                 );
         } catch (error) {
