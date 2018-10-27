@@ -23,6 +23,8 @@ export interface HatebuSearchListProps {
 export interface HatebuSearchListState {
     filterWords: string[];
     items: HatebuSearchListItem[];
+    originalItems: HatebuSearchListItem[];
+    refreshFlag: boolean;
 }
 
 export interface HatebuSearchListItemProps extends HatebuSearchListItem {
@@ -68,7 +70,9 @@ export const HatebuSearchListItemComponent = (item: HatebuSearchListItemProps) =
 export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps, HatebuSearchListState> {
     state = {
         filterWords: [],
-        items: this.props.items
+        items: [],
+        originalItems: [],
+        refreshFlag: false
     };
     private filterWorker!: Worker;
     private isOnComposition!: boolean;
@@ -83,18 +87,26 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
         }
     }
 
-    static getDerivedStateFromProps(nextProps: HatebuSearchListProps, prevState: HatebuSearchListState) {
-        if (nextProps.items !== prevState.items) {
+    static getDerivedStateFromProps(nextProps: HatebuSearchListProps, state: HatebuSearchListState) {
+        // props.items => originalItems
+        if (nextProps.items !== state.originalItems) {
             return {
-                items: nextProps.items
+                refreshFlag: true,
+                originalItems: nextProps.items
             };
         }
         return null;
     }
 
     componentDidUpdate(prevProps: HatebuSearchListProps) {
-        if (this.props.items !== prevProps.items) {
-            this.worker.emit("init", this.state.items);
+        // If no input and got new items, refresh worker
+        const isEmptyItems = this.state.filterWords.length === 0;
+        if (this.state.refreshFlag && isEmptyItems) {
+            this.worker.emit("init", this.state.originalItems);
+            this.setState({
+                refreshFlag: false,
+                items: this.state.originalItems
+            });
         }
         if (this.props.autoFocus !== prevProps.autoFocus) {
             this.focus();
@@ -107,9 +119,8 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
         }
     };
 
-    public render() {
-        const { items: originalItems } = this.props;
-        const { items } = this.state;
+    render() {
+        const { originalItems, items } = this.state;
         const resultCountText =
             items.length === originalItems.length ? "" : ` (${items.length} of ${originalItems.length} shown)`;
 
@@ -151,7 +162,7 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
         if (this.isOnComposition) {
             return;
         }
-        const filterWords = text.split(/\s/);
+        const filterWords = text.split(/\s/).filter(text => text.length > 0);
         return this.worker
             .exec("filter", filterWords)
             .then((items: HatebuSearchListItem[]) => {
