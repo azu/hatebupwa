@@ -14,7 +14,11 @@ export class SearchContainer extends React.PureComponent<SearchContainerProps, {
                 <FocusMatcher
                     matchPath={"/user/:name"}
                     render={isFocus => (
-                        <HatebuSearchList items={this.props.searchContainer.items} autoFocus={isFocus} />
+                        <HatebuSearchList
+                            items={this.props.searchContainer.items}
+                            autoFocus={isFocus}
+                            focusSignature={this.props.searchContainer.focusTextFieldSymbol}
+                        />
                     )}
                 />
             </div>

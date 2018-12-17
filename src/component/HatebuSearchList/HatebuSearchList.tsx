@@ -17,6 +17,7 @@ const WebworkerPromise = require("webworker-promise");
 
 export interface HatebuSearchListProps {
     autoFocus: boolean;
+    focusSignature: Symbol | undefined;
     items: HatebuSearchListItem[];
 }
 
@@ -82,9 +83,6 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
     componentDidMount() {
         this.filterWorker = new Worker(process.env.PUBLIC_URL + "/workers/filter.js");
         this.worker = new WebworkerPromise(this.filterWorker);
-        if (this.props.autoFocus) {
-            this.focus();
-        }
     }
 
     static getDerivedStateFromProps(nextProps: HatebuSearchListProps, state: HatebuSearchListState) {
@@ -108,7 +106,7 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
                 items: this.state.originalItems
             });
         }
-        if (this.props.autoFocus !== prevProps.autoFocus) {
+        if (this.props.focusSignature !== prevProps.focusSignature) {
             this.focus();
         }
     }
