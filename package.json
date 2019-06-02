@@ -8,8 +8,6 @@
     "build": "npm-run-all build:worker build:react sw:generate",
     "build:react": "react-scripts-ts build",
     "build:worker": "webpack --mode production --config webpack.worker.config.js",
-    "precommit": "lint-staged",
-    "postcommit": "git reset",
     "eject": "react-scripts-ts eject",
     "start": "npm-run-all build:worker start:*",
     "start:react": "react-scripts-ts start",
@@ -98,6 +96,12 @@
       "pathRewrite": {
         "^/home": "/index.html"
       }
+    }
+  },
+  "husky": {
+    "hooks": {
+      "post-commit": "git reset",
+      "pre-commit": "lint-staged"
     }
   }
 }
