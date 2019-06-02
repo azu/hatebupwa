@@ -80,7 +80,7 @@
   },
   "proxy": {
     "/hatebu": {
-      "target": "http://b.hatena.ne.jp",
+      "target": "https://b.hatena.ne.jp",
       "pathRewrite": {
         "^/hatebu": ""
       },
