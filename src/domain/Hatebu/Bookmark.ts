@@ -2,6 +2,7 @@ import { Identifier, Serializer, ValueObject } from "ddd-base";
 import { BookmarkItem, BookmarkItemConverter, BookmarkItemJSON } from "./BookmarkItem";
 import { matchBookmarkItem } from "./BookmarkSearch";
 import { BookmarkDate } from "./BookmarkDate";
+import uniqBy from "lodash.uniqby";
 
 export const BookmarkConverter: Serializer<Bookmark, BookmarkJSON> = {
     fromJSON(json) {
@@ -73,6 +74,7 @@ export class Bookmark extends ValueObject<BookmarkProps> implements Bookmark {
         if (items.length === 0) {
             return this;
         }
-        return this.updateBookmarkItems(items.concat(this.props.items), lastUpdated);
+        const bookmarkItems = items.concat(this.props.items);
+        return this.updateBookmarkItems(uniqBy(bookmarkItems, item => item.props), lastUpdated);
     }
 }
