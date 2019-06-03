@@ -75,6 +75,6 @@ export class Bookmark extends ValueObject<BookmarkProps> implements Bookmark {
             return this;
         }
         const bookmarkItems = items.concat(this.props.items);
-        return this.updateBookmarkItems(uniqBy(bookmarkItems, item => item.props), lastUpdated);
+        return this.updateBookmarkItems(uniqBy(bookmarkItems, item => item.props.url), lastUpdated);
     }
 }
