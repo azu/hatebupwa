@@ -50,8 +50,7 @@
     "react-routing-resolver": "3.0.0",
     "react-scripts": "^3.0.1",
     "regex-combiner": "^1.0.1",
-    "ulid": "^2.3.0",
-    "webworker-promise": "^0.4.1"
+    "ulid": "^2.3.0"
   },
   "devDependencies": {
     "@types/jest": "^22.2.2",
