@@ -78,11 +78,11 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
     private filterWorker!: Worker;
     private isOnComposition!: boolean;
     private textFieldRef = React.createRef<ITextField>();
-    private workerAPI!: Comlink.Remote<import("../../../workers/filter").WorkerAPI>;
+    private workerAPI!: import("../../../workers/filter").WorkerAPI;
 
     componentDidMount() {
         this.filterWorker = new Worker(process.env.PUBLIC_URL + "/workers/filter.js");
-        this.workerAPI = Comlink.wrap<import("../../../workers/filter").WorkerAPI>(this.filterWorker);
+        this.workerAPI = Comlink.wrap(this.filterWorker);
         if (this.props.autoFocus) {
             this.focus();
         }

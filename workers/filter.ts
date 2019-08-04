@@ -1,4 +1,4 @@
-import { expose } from "comlink";
+import { expose, Remote } from "comlink";
 import { HatebuSearchListItem } from "../src/container/SearchContainer/SearchContainerStore";
 import { matchBookmarkItem } from "../src/domain/Hatebu/BookmarkSearch";
 
@@ -13,5 +13,5 @@ const WorkerAPI = {
         });
     }
 };
-export type WorkerAPI = typeof WorkerAPI;
+export type WorkerAPI = Remote<typeof WorkerAPI>;
 expose(WorkerAPI);
