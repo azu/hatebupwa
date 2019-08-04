@@ -6,12 +6,12 @@
   "private": true,
   "scripts": {
     "build": "npm-run-all build:worker build:react sw:generate",
-    "build:react": "react-scripts-ts build",
+    "build:react": "react-scripts build",
     "build:worker": "webpack --mode production --config webpack.worker.config.js",
-    "eject": "react-scripts-ts eject",
+    "eject": "react-scripts eject",
     "start": "npm-run-all build:worker start:*",
-    "start:react": "react-scripts-ts start",
-    "test": "react-scripts-ts test --env=node",
+    "start:react": "react-scripts start",
+    "test": "react-scripts test --env=node",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "sw:generate": "workbox generateSW workbox-config.js",
     "pacakge": "node tools/package-app.js"
@@ -27,10 +27,11 @@
     "@types/history": "^4.6.2",
     "@types/lodash.uniqby": "^4.5.6",
     "@types/prop-types": "^15.5.2",
-    "@uifabric/icons": "^5.7.1",
+    "@uifabric/icons": "^7.1.1",
     "almin": "^0.17.1",
     "almin-logger": "^6.2.1",
     "asocial-bookmark": "^1.0.3",
+    "comlink": "^4.0.2",
     "date-fns": "^1.29.0",
     "ddd-base": "^0.6.0",
     "debounce-promise": "^3.1.0",
@@ -42,22 +43,22 @@
     "localforage-memoryStorageDriver": "^0.9.2",
     "lodash.uniqby": "^4.5.0",
     "micro-memoize": "^2.0.1",
-    "office-ui-fabric-react": "^5.91.0",
+    "office-ui-fabric-react": "^7.19.1",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-highlight-words": "^0.11.0",
     "react-routing-resolver": "3.0.0",
-    "react-scripts-ts": "2.15.1",
+    "react-scripts": "^3.0.1",
     "regex-combiner": "^1.0.1",
-    "ulid": "^2.3.0",
-    "webworker-promise": "^0.4.1"
+    "ulid": "^2.3.0"
   },
   "devDependencies": {
     "@types/jest": "^22.2.2",
     "@types/node": "^9.6.2",
-    "@types/react": "16.3.13",
-    "@types/react-dom": "16.0.5",
+    "@types/react": "16.8.24",
+    "@types/react-dom": "16.8.5",
     "express": "^4.16.3",
+    "http-proxy-middleware": "^0.19.1",
     "husky": "^2.3.0",
     "lint-staged": "^8.1.7",
     "nativefier": "^7.6.1",
@@ -65,13 +66,14 @@
     "prettier": "^1.17.1",
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.1",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^2.0.15",
+    "webpack": "4.29.6",
+    "webpack-cli": "^3.3.6",
     "workbox-cli": "^3.1.0"
   },
   "resolutions": {
     "@types/react": "16.3.8",
-    "@types/react-dom": "16.0.5"
+    "@types/react-dom": "16.0.5",
+    "webpack": "4.29.6"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [
@@ -79,31 +81,22 @@
       "git add"
     ]
   },
-  "proxy": {
-    "/hatebu": {
-      "target": "https://b.hatena.ne.jp",
-      "pathRewrite": {
-        "^/hatebu": ""
-      },
-      "changeOrigin": true
-    },
-    "/user": {
-      "target": "http://localhost:3000/",
-      "pathRewrite": {
-        "^/user/*": "/index.html"
-      }
-    },
-    "/home": {
-      "target": "http://localhost:3000/",
-      "pathRewrite": {
-        "^/home": "/index.html"
-      }
-    }
-  },
   "husky": {
     "hooks": {
       "post-commit": "git reset",
       "pre-commit": "lint-staged"
     }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

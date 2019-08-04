@@ -3,17 +3,18 @@ import {
     FocusZone,
     FocusZoneDirection,
     FocusZoneTabbableElements,
+    ITextField,
     Link,
     List,
     TextField
 } from "office-ui-fabric-react";
+import * as Comlink from "comlink";
 import { HatebuSearchListItem } from "../../container/SearchContainer/SearchContainerStore";
 import { KeyboardEvent } from "react";
 
 const format = require("date-fns/format");
 const debouncePromise = require("debounce-promise");
 const Highlighter = require("react-highlight-words");
-const WebworkerPromise = require("webworker-promise");
 
 export interface HatebuSearchListProps {
     autoFocus: boolean;
@@ -76,12 +77,12 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
     };
     private filterWorker!: Worker;
     private isOnComposition!: boolean;
-    private worker: any;
-    private textFieldRef = React.createRef<TextField>();
+    private textFieldRef = React.createRef<ITextField>();
+    private workerAPI!: import("../../../workers/filter").WorkerAPI;
 
     componentDidMount() {
         this.filterWorker = new Worker(process.env.PUBLIC_URL + "/workers/filter.js");
-        this.worker = new WebworkerPromise(this.filterWorker);
+        this.workerAPI = Comlink.wrap(this.filterWorker);
         if (this.props.autoFocus) {
             this.focus();
         }
@@ -102,11 +103,15 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
         // If no input and got new items, refresh worker
         const isEmptyItems = this.state.filterWords.length === 0;
         if (this.state.refreshFlag && isEmptyItems) {
-            this.worker.emit("init", this.state.originalItems);
-            this.setState({
-                refreshFlag: false,
-                items: this.state.originalItems
-            });
+            this.setState(
+                {
+                    refreshFlag: false,
+                    items: this.state.originalItems
+                },
+                () => {
+                    return this.workerAPI.init(this.state.originalItems);
+                }
+            );
         }
         if (this.props.autoFocus !== prevProps.autoFocus) {
             this.focus();
@@ -138,7 +143,7 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
                         iconName: "Filter"
                     }}
                     label={"Filter by words" + resultCountText}
-                    onChanged={this.onFilterChanged}
+                    onChange={this.onFilterChange}
                     onCompositionStart={this.onCompositionHandle}
                     onCompositionEnd={this.onCompositionHandle}
                 />
@@ -157,14 +162,19 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
         }
     };
 
+    private onFilterChange = (event?: any, newValue?: string) => {
+        if (newValue) {
+            this.onFilterChanged(newValue);
+        }
+    };
     private onFilterChanged = debouncePromise((text: string) => {
         // ignore this change during commissioning
         if (this.isOnComposition) {
             return;
         }
         const filterWords = text.split(/\s/).filter(text => text.length > 0);
-        return this.worker
-            .exec("filter", filterWords)
+        return this.workerAPI
+            .filter(filterWords)
             .then((items: HatebuSearchListItem[]) => {
                 return new Promise(resolve => {
                     this.setState(
