@@ -11,25 +11,29 @@ export interface UserFormProps {
     onClickRebuild: (name: string) => void;
 }
 
-export class UserForm extends React.PureComponent<UserFormProps, {}> {
-    private textFieldRef = React.createRef<TextField>();
+export class UserForm extends React.PureComponent<UserFormProps, { value: string }> {
+    state = {
+        value: this.props.userName || ""
+    };
     private onSubmit = (event: FormEvent<any>) => {
         event.preventDefault();
-        if (this.textFieldRef.current) {
-            this.props.onSubmit(this.textFieldRef.current.value || "");
-        }
+        this.props.onSubmit(this.state.value || "");
     };
 
     private onClick = () => {
-        if (this.textFieldRef.current) {
-            this.props.onSubmit(this.textFieldRef.current.value || "");
-        }
+        this.props.onSubmit(this.state.value || "");
     };
 
     private onClickRebuild = () => {
-        if (this.textFieldRef.current) {
-            this.props.onClickRebuild(this.textFieldRef.current.value || "");
-        }
+        this.props.onClickRebuild(this.state.value || "");
+    };
+    private onChangeTextField = (
+        _event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+        newValue?: string
+    ) => {
+        this.setState({
+            value: newValue || ""
+        });
     };
 
     render() {
@@ -41,12 +45,12 @@ export class UserForm extends React.PureComponent<UserFormProps, {}> {
                         <TextField
                             inputClassName={"UserForm-textFieldInput"}
                             className={"UserForm-textField"}
-                            value={this.props.userName}
+                            value={this.state.value}
                             placeholder={"hatenabookmark"}
                             autoComplete="off"
                             disabled={this.props.isLocked}
                             autoFocus={this.props.autoFocus}
-                            ref={this.textFieldRef}
+                            onChange={this.onChangeTextField}
                         />
                     </div>
                     <div className="UserForm-right">

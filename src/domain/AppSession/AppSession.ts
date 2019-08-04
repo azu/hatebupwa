@@ -29,10 +29,6 @@ export interface AppSessionProps {
 }
 
 export class AppSession extends Entity<AppSessionProps> {
-    constructor(args: AppSessionProps) {
-        super(args);
-    }
-
     get currentHatebuId() {
         return this.props.hatebuId;
     }

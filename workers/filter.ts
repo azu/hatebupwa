@@ -1,14 +1,17 @@
+import { expose } from "comlink";
 import { HatebuSearchListItem } from "../src/container/SearchContainer/SearchContainerStore";
 import { matchBookmarkItem } from "../src/domain/Hatebu/BookmarkSearch";
 
-const registerWebworker = require("webworker-promise/lib/register");
 let currentItems: HatebuSearchListItem[] = [];
-registerWebworker()
-    .on("init", (items: HatebuSearchListItem[]) => {
+const WorkerAPI = {
+    init(items: HatebuSearchListItem[]) {
         currentItems = items;
-    })
-    .operation("filter", (filterWords: string[]) => {
+    },
+    filter(filterWords: string[]) {
         return currentItems.filter(item => {
             return matchBookmarkItem(item, filterWords);
         });
-    });
+    }
+};
+export type WorkerAPI = typeof WorkerAPI;
+expose(WorkerAPI);

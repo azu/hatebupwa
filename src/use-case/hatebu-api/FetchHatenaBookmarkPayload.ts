@@ -10,6 +10,4 @@ export class FinishFetchHatenaBookmarkPayload implements Payload {
 
 export class FailToFetchHatenaBookmarkPayload implements Payload {
     type = "FailToFetchHatenaBookmarkPayload";
-
-    constructor(error: Error) {}
 }
