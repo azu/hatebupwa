@@ -76,7 +76,6 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
         refreshFlag: false
     };
     private filterWorker!: Worker;
-    private isOnComposition!: boolean;
     private textFieldRef = React.createRef<ITextField>();
     private workerAPI!: import("../../../workers/filter").WorkerAPI;
 
@@ -144,34 +143,18 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
                     }}
                     label={"Filter by words" + resultCountText}
                     onChange={this.onFilterChange}
-                    onCompositionStart={this.onCompositionHandle}
-                    onCompositionEnd={this.onCompositionHandle}
                 />
                 <List className={"HatebuSearchList-body"} items={items} onRenderCell={this.onRenderCell} />
             </FocusZone>
         );
     }
 
-    // Based on https://github.com/LeoEatle/react-composition-input
-    private onCompositionHandle = (event: React.CompositionEvent<HTMLInputElement>) => {
-        if (event.type === "compositionstart") {
-            this.isOnComposition = true;
-        } else if (event.type === "compositionend") {
-            this.isOnComposition = false;
-            this.onFilterChanged(event.currentTarget.value);
-        }
-    };
-
     private onFilterChange = (event?: any, newValue?: string) => {
-        if (newValue) {
+        if (newValue !== undefined) {
             this.onFilterChanged(newValue);
         }
     };
     private onFilterChanged = debouncePromise((text: string) => {
-        // ignore this change during commissioning
-        if (this.isOnComposition) {
-            return;
-        }
         const filterWords = text.split(/\s/).filter(text => text.length > 0);
         return this.workerAPI
             .filter(filterWords)
