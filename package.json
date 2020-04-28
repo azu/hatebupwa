@@ -14,7 +14,7 @@
     "test": "react-scripts test --env=node",
     "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "sw:generate": "workbox generateSW workbox-config.js",
-    "pacakge": "node tools/package-app.js"
+    "package": "node tools/package-app.js"
   },
   "prettier": {
     "printWidth": 120,
