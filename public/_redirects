@@ -2,5 +2,5 @@
 /user/:name  /index.html                 200
 /home/       /index.html                 200
 # CORS proxy
-# https://www.netlify.com/docs/redirects/#proxying
+# https://www.netlify.app/docs/redirects/#proxying
 /hatebu/*  https://b.hatena.ne.jp/:splat  200

@@ -12,22 +12,22 @@ Hatena Bookmark search app.
 
 ## Usage
 
-1. Open <https://hatebupwa.netlify.com/>
+1. Open <https://hatebupwa.netlify.app/>
 2. Input hatena user name
 3. Search
 
 
 For [asocial-bookmark](https://github.com/azu/asocial-bookmark) user
 
-1. Open <https://hatebupwa.netlify.com/>
+1. Open <https://hatebupwa.netlify.app/>
 2. Input `https://your-bookmark.example.com/index.json` to hatenagit  user name
     - Support root index.json file as user name
 3. Search
 
 ### Install as App
 
-- iOS: "Add HomesScreen" on <https://hatebupwa.netlify.com/>
-- Android: "Add HomeScreen" on <https://hatebupwa.netlify.com/>
+- iOS: "Add HomesScreen" on <https://hatebupwa.netlify.app/>
+- Android: "Add HomeScreen" on <https://hatebupwa.netlify.app/>
 - mac: Download from <https://github.com/azu/hatebupwa/releases/latest>
 - other platform: Run following commands:
 

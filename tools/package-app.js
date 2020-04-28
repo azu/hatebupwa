@@ -4,7 +4,7 @@ const projectRoot = path.join(__dirname, "..");
 // possible options, defaults unless specified otherwise
 const options = {
     name: "HatebuPWA", // will be inferred if not specified
-    targetUrl: "https://hatebupwa.netlify.com/home/", // required
+    targetUrl: "https://hatebupwa.netlify.app/home/", // required
     version: require("../package").version,
     out: path.join(projectRoot, "dist"),
     overwrite: true,

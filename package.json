@@ -2,7 +2,7 @@
   "name": "hatebupwa",
   "version": "1.0.0",
   "description": "Hatena Bookmark search app.",
-  "homepage": "https://hatebupwa.netlify.com/",
+  "homepage": "https://hatebupwa.netlify.app/",
   "private": true,
   "scripts": {
     "build": "npm-run-all build:worker build:react sw:generate",
