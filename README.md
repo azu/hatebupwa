@@ -1,4 +1,4 @@
-# hatebupwa [![Build Status](https://travis-ci.org/azu/hatebupwa.svg?branch=master)](https://travis-ci.org/azu/hatebupwa)
+# hatebupwa [![Actions Status: test](https://github.com/azu/hatebupwa/workflows/test/badge.svg)](https://github.com/azu/hatebupwa/actions?query=workflow%3A"test")
 
 Hatena Bookmark search app.
 
