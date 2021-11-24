@@ -23,14 +23,14 @@ export class HatebuRepository extends NullableRepository<Hatebu> {
         await this.storage.ready();
         const values: HatebuJSON[] = [];
         let lastValue: Hatebu | null = null;
-        await this.storage.iterate<HatebuJSON, void>(value => {
+        await this.storage.iterate<HatebuJSON, void>((value) => {
             values.push(value);
         });
         values
-            .map(json => {
+            .map((json) => {
                 return HatebuConverter.fromJSON(json);
             })
-            .forEach(hatebu => {
+            .forEach((hatebu) => {
                 this.map.set(hatebu.props.id.toValue(), hatebu);
                 lastValue = hatebu;
             });

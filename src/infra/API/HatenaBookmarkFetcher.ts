@@ -10,14 +10,14 @@ export const fetchHatenaBookmark = (userName: string, sinceTime?: BookmarkDate):
     const isURL = /^https?:\/\//.test(userName);
     if (isURL) {
         return fetch(userName)
-            .then(res => {
+            .then((res) => {
                 if (!res.ok) {
                     throw new Error("Can not fetch");
                 }
                 return res.json();
             })
             .then((json: AsocialBookmarkItem[]) => {
-                return json.map(item => {
+                return json.map((item) => {
                     return {
                         title: item.title,
                         comment: item.content,
@@ -35,7 +35,7 @@ export const fetchHatenaBookmark = (userName: string, sinceTime?: BookmarkDate):
             }
             return res.text();
         })
-        .then(text => {
+        .then((text) => {
             return parse(text);
         });
 };

@@ -23,13 +23,13 @@ export class App extends React.PureComponent<{}, AppState> {
 
     private onVisibleUserPage = (args: { name: string }) => {
         // refresh on visible
-        context.useCase(createRefreshHatenaBookmarkUseCase()).executor(useCase => useCase.execute(args.name));
+        context.useCase(createRefreshHatenaBookmarkUseCase()).executor((useCase) => useCase.execute(args.name));
     };
 
     componentDidMount() {
         context
             .useCase(createInitializeSystemUseCase())
-            .executor(useCase => useCase.execute())
+            .executor((useCase) => useCase.execute())
             .then(() => {
                 this.setState({
                     isInitialized: true
@@ -42,8 +42,10 @@ export class App extends React.PureComponent<{}, AppState> {
         try {
             await context
                 .useCase(createSwitchCurrentHatebuUserUseCase())
-                .executor(useCase => useCase.execute(userName));
-            await context.useCase(createRefreshHatenaBookmarkUseCase()).executor(useCase => useCase.execute(userName));
+                .executor((useCase) => useCase.execute(userName));
+            await context
+                .useCase(createRefreshHatenaBookmarkUseCase())
+                .executor((useCase) => useCase.execute(userName));
         } catch (error) {
             console.error(error);
         }
@@ -51,7 +53,7 @@ export class App extends React.PureComponent<{}, AppState> {
 
     private onMatchOther = () => {};
     private onMatchHome = async () => {
-        await context.useCase(createRestoreLastSessionUseCase()).executor(useCase => useCase.execute());
+        await context.useCase(createRestoreLastSessionUseCase()).executor((useCase) => useCase.execute());
     };
 
     render() {
@@ -82,7 +84,7 @@ export class App extends React.PureComponent<{}, AppState> {
                         <Link href={"/"}>はてなブックマーク検索</Link>
                     </h1>
                     <Consumer>
-                        {state => {
+                        {(state) => {
                             return (
                                 <>
                                     <UserFormContainer app={state.app} userFormContainer={state.userFormContainer} />

@@ -23,13 +23,13 @@ export class AppSessionRepository extends NonNullableRepository<AppSession> {
         }
         await this.storage.ready();
         const values: AppSessionJSON[] = [];
-        await this.storage.iterate<AppSessionJSON, void>(value => {
+        await this.storage.iterate<AppSessionJSON, void>((value) => {
             values.push(value);
         });
-        const entities = values.map(json => {
+        const entities = values.map((json) => {
             return AppSessionConverter.fromJSON(json);
         });
-        entities.forEach(entity => {
+        entities.forEach((entity) => {
             this.map.set(entity.props.id.toValue(), entity);
         });
         // TODO: NonNullableRepository should have set lastUsed Value

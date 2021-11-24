@@ -17,4 +17,4 @@ export const createBookmarkItemFromJSON = (itemJSON: RawHatenaBookmark) => {
     });
 };
 
-export const convertItems = (items: RawHatenaBookmark[]) => items.map(item => createBookmarkItemFromJSON(item));
+export const convertItems = (items: RawHatenaBookmark[]) => items.map((item) => createBookmarkItemFromJSON(item));

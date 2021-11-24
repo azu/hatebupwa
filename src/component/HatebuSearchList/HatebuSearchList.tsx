@@ -155,11 +155,11 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
         }
     };
     private onFilterChanged = debouncePromise((text: string) => {
-        const filterWords = text.split(/\s/).filter(text => text.length > 0);
+        const filterWords = text.split(/\s/).filter((text) => text.length > 0);
         return this.workerAPI
             .filter(filterWords)
             .then((items: HatebuSearchListItem[]) => {
-                return new Promise(resolve => {
+                return new Promise((resolve) => {
                     this.setState(
                         {
                             filterWords: filterWords,

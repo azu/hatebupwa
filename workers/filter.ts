@@ -8,7 +8,7 @@ const WorkerAPI = {
         currentItems = items;
     },
     filter(filterWords: string[]) {
-        return currentItems.filter(item => {
+        return currentItems.filter((item) => {
             return matchBookmarkItem(item, filterWords);
         });
     }

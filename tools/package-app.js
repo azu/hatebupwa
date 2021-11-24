@@ -11,7 +11,7 @@ const options = {
     icon: path.join(projectRoot, "public/img/hatenabookmark/hatenabookmark-logomark.png")
 };
 
-nativefier(options, function(error, appPath) {
+nativefier(options, function (error, appPath) {
     if (error) {
         console.error(error);
         return;

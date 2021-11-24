@@ -18,7 +18,7 @@ export class UserFormContainer extends React.PureComponent<UserFormContainerProp
         try {
             context
                 .useCase(createCreateHatebuUserUseCase())
-                .executor(useCase => useCase.execute(userName))
+                .executor((useCase) => useCase.execute(userName))
                 .then(
                     () => {
                         return context.useCase(createSwitchCurrentHatebuUserUseCase()).execute(userName);
@@ -36,7 +36,7 @@ export class UserFormContainer extends React.PureComponent<UserFormContainerProp
             await context
                 .useCase(createCreateHatebuUserUseCase())
                 .execute(userName)
-                .catch(error => {
+                .catch((error) => {
                     console.warn("Already create, but it can be ignored", error);
                 });
             await context.useCase(createSwitchCurrentHatebuUserUseCase()).execute(userName);
@@ -51,7 +51,7 @@ export class UserFormContainer extends React.PureComponent<UserFormContainerProp
             <div className="UserFormContainer">
                 <FocusMatcher
                     matchPath={"/"}
-                    render={isFocus => (
+                    render={(isFocus) => (
                         <UserForm
                             isLocked={this.props.app.isFetching}
                             onSubmit={this.onSubmit}

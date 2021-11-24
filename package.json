@@ -12,14 +12,16 @@
     "start": "npm-run-all build:worker start:*",
     "start:react": "react-scripts start",
     "test": "react-scripts test --env=node",
-    "prettier": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
     "sw:generate": "workbox generateSW workbox-config.js",
-    "package": "node tools/package-app.js"
+    "package": "node tools/package-app.js",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
+    "prepare": "git config --local core.hooksPath .githooks"
   },
   "prettier": {
-    "printWidth": 120,
     "singleQuote": false,
-    "tabWidth": 4
+    "printWidth": 120,
+    "tabWidth": 4,
+    "trailingComma": "none"
   },
   "dependencies": {
     "@almin/react-context": "^1.1.1",
@@ -59,11 +61,10 @@
     "@types/react-dom": "16.8.5",
     "express": "^4.16.3",
     "http-proxy-middleware": "^0.19.1",
-    "husky": "^2.3.0",
-    "lint-staged": "^8.1.7",
+    "lint-staged": "^12.1.2",
     "nativefier": "^7.6.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^1.17.1",
+    "prettier": "^2.4.1",
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.1",
     "webpack": "4.29.6",
@@ -77,8 +78,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "husky": {

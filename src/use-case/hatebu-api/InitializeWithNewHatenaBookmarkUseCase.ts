@@ -28,13 +28,13 @@ export class InitializeWithNewHatenaBookmarkUseCase extends UseCase {
         debug("start fetching items for initializing");
         this.dispatch(new StartFetchHatenaBookmarkPayload());
         return fetchHatenaBookmark(userName)
-            .then(async bookmarkRawItems => {
+            .then(async (bookmarkRawItems) => {
                 debug("finish fetching items(%s) and update list with items", bookmarkRawItems.length);
                 const updatedHatebu = hatebu.updateBookmarkItems(convertItems(bookmarkRawItems));
                 await this.repo.hatebuRepository.save(updatedHatebu);
                 this.dispatch(new FinishFetchHatenaBookmarkPayload());
             })
-            .catch(error => {
+            .catch((error) => {
                 this.dispatch(new FailToFetchHatenaBookmarkPayload(error));
             });
     }

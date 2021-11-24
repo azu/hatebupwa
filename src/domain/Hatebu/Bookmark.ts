@@ -7,13 +7,13 @@ import uniqBy from "lodash.uniqby";
 export const BookmarkConverter: Serializer<Bookmark, BookmarkJSON> = {
     fromJSON(json) {
         return new Bookmark({
-            items: json.items.map(item => BookmarkItemConverter.fromJSON(item)),
+            items: json.items.map((item) => BookmarkItemConverter.fromJSON(item)),
             lastUpdated: BookmarkDate.fromUnixTime(json.lastUpdated)
         });
     },
     toJSON(entity) {
         return {
-            items: entity.props.items.map(item => BookmarkItemConverter.toJSON(item)),
+            items: entity.props.items.map((item) => BookmarkItemConverter.toJSON(item)),
             lastUpdated: entity.props.lastUpdated.unixTime
         };
     }
@@ -49,7 +49,7 @@ export class Bookmark extends ValueObject<BookmarkProps> implements Bookmark {
      * @returns {BookmarkItem[]}
      */
     getMatchedItems(searchWords: string[]) {
-        return this.findItemsByMatch(item => matchBookmarkItem(item, searchWords));
+        return this.findItemsByMatch((item) => matchBookmarkItem(item, searchWords));
     }
 
     findItemsByMatch(predicate: (item: BookmarkItem) => boolean) {
@@ -75,6 +75,9 @@ export class Bookmark extends ValueObject<BookmarkProps> implements Bookmark {
             return this;
         }
         const bookmarkItems = items.concat(this.props.items);
-        return this.updateBookmarkItems(uniqBy(bookmarkItems, item => item.props.url), lastUpdated);
+        return this.updateBookmarkItems(
+            uniqBy(bookmarkItems, (item) => item.props.url),
+            lastUpdated
+        );
     }
 }

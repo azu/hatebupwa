@@ -26,7 +26,7 @@ export const matchBookmarkItem = (bookmark: BookmarkItem, searchWords: string[])
         return true;
     }
     // multiple words as & search
-    return searchWords.every(searchWord => {
+    return searchWords.every((searchWord) => {
         return text.indexOf(searchWord.toLowerCase()) !== -1;
     });
 };
