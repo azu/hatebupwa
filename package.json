@@ -8,10 +8,7 @@
   "scripts": {
     "build": "vite build",
     "build:worker": "vite build vite.config.worker.js",
-    "eject": "react-scripts eject",
-    "start": "vite",
-    "start:react": "react-scripts start",
-    "test": "react-scripts test --env=node",
+    "test": "vitest run",
     "sw:generate": "workbox generateSW workbox-config.js",
     "package": "node tools/package-app.js",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
@@ -60,6 +57,7 @@
     "@types/node": "^20.11.5",
     "@types/react": "16.8.24",
     "@types/react-dom": "16.8.5",
+    "@vitejs/plugin-react": "^4.2.1",
     "express": "^4.16.3",
     "http-proxy-middleware": "^0.19.1",
     "lint-staged": "^12.1.2",
@@ -68,10 +66,10 @@
     "prettier": "^2.4.1",
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.1",
-    "workbox-cli": "^3.1.0",
-    "@vitejs/plugin-react": "^4.2.1",
     "vite": "^5.1.1",
-    "vite-tsconfig-paths": "^4.3.1"
+    "vite-tsconfig-paths": "^4.3.1",
+    "vitest": "^1.6.0",
+    "workbox-cli": "^3.1.0"
   },
   "resolutions": {
     "@types/react": "16.3.8",
