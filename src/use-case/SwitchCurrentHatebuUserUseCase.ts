@@ -1,10 +1,10 @@
 import { Payload, UseCase } from "almin";
-import { AppSessionRepository, appSessionRepository } from "../infra/repository/AppSessionRepository";
-import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository";
-import { browserHistory } from "../infra/browser/browserHistory";
+import { AppSessionRepository, appSessionRepository } from "../infra/repository/AppSessionRepository.js";
+import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository.js";
+import { browserHistory } from "../infra/browser/browserHistory.js";
 import { History } from "history";
-
-const debug = require("debug")("hatebupwa:SwitchCurrentHatebuUserUseCase");
+import debug0 from "debug";
+const debug = debug0("hatebupwa:SwitchCurrentHatebuUserUseCase");
 
 export const createSwitchCurrentHatebuUserUseCase = () => {
     return new SwitchCurrentHatebuUserUseCase({

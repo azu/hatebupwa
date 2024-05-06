@@ -1,5 +1,5 @@
 import { Serializer, ValueObject } from "ddd-base";
-import { BookmarkDate } from "./BookmarkDate";
+import { BookmarkDate } from "./BookmarkDate.js";
 
 export const BookmarkItemConverter: Serializer<BookmarkItem, BookmarkItemJSON> = {
     fromJSON(json) {

@@ -1,7 +1,7 @@
-import { matchBookmarkItem } from "../BookmarkSearch";
-import { BookmarkItem } from "../BookmarkItem";
-import * as assert from "assert";
-import { BookmarkDate } from "../BookmarkDate";
+import { matchBookmarkItem } from "../BookmarkSearch.js";
+import { BookmarkItem } from "../BookmarkItem.js";
+import * as assert from "node:assert";
+import { BookmarkDate } from "../BookmarkDate.js";
 
 const createExampleBookmark = () => {
     return new BookmarkItem({

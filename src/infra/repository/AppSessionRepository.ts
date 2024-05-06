@@ -1,7 +1,7 @@
 import { NonNullableRepository } from "ddd-base";
-import { AppSession, AppSessionConverter, AppSessionJSON } from "../../domain/AppSession/AppSession";
-import { createStorageInstance } from "./StorageManger";
-import { createAppSession } from "../../domain/AppSession/AppSessionFactory";
+import { AppSession, AppSessionConverter, AppSessionJSON } from "../../domain/AppSession/AppSession.js";
+import { createStorageInstance } from "./StorageManger.js";
+import { createAppSession } from "../../domain/AppSession/AppSessionFactory.js";
 
 export class AppSessionRepository extends NonNullableRepository<AppSession> {
     private storage: LocalForage;

@@ -1,7 +1,7 @@
 import { Identifier, Serializer, ValueObject } from "ddd-base";
-import { BookmarkItem, BookmarkItemConverter, BookmarkItemJSON } from "./BookmarkItem";
-import { matchBookmarkItem } from "./BookmarkSearch";
-import { BookmarkDate } from "./BookmarkDate";
+import { BookmarkItem, BookmarkItemConverter, BookmarkItemJSON } from "./BookmarkItem.js";
+import { matchBookmarkItem } from "./BookmarkSearch.js";
+import { BookmarkDate } from "./BookmarkDate.js";
 import uniqBy from "lodash.uniqby";
 
 export const BookmarkConverter: Serializer<Bookmark, BookmarkJSON> = {

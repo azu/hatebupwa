@@ -1,6 +1,6 @@
 import { UseCase } from "almin";
-import { createHatebu } from "../domain/Hatebu/HatebuFactory";
-import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository";
+import { createHatebu } from "../domain/Hatebu/HatebuFactory.js";
+import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository.js";
 
 export const createCreateHatebuUserUseCase = () => {
     return new CreateHatebuUserUseCase({

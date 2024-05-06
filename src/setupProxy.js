@@ -1,5 +1,6 @@
-const proxy = require("http-proxy-middleware");
-module.exports = function (app) {
+import proxy from "http-proxy-middleware";
+
+export default function (app) {
     app.use(
         proxy("/hatebu", {
             target: "https://b.hatena.ne.jp",
@@ -25,4 +26,4 @@ module.exports = function (app) {
             }
         })
     );
-};
+}

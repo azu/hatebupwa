@@ -3,15 +3,14 @@ import * as ReactDOM from "react-dom";
 import { initializeIcons } from "@uifabric/icons";
 import { App } from "./container/App";
 import { Provider } from "./Context";
-// Register icons and pull the fonts from the default SharePoint cdn:
-initializeIcons();
 
-// require all css files
-function requireAll(r: any) {
-    r.keys().forEach(r);
+const cssFiles = import.meta.glob("./**/*.css");
+for (const path in cssFiles) {
+    cssFiles[path]();
 }
+// Register icons and pull the fonts from the default SharePoint cdn:
 
-requireAll((require as any).context("./", true, /\.css$/));
+initializeIcons();
 
 ReactDOM.render(
     <Provider>

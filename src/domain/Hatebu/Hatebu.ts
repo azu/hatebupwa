@@ -1,6 +1,6 @@
 import { Entity, Identifier, Serializer } from "ddd-base";
-import { Bookmark, BookmarkConverter, BookmarkJSON } from "./Bookmark";
-import { BookmarkItem } from "./BookmarkItem";
+import { Bookmark, BookmarkConverter, BookmarkJSON } from "./Bookmark.js";
+import { BookmarkItem } from "./BookmarkItem.js";
 
 export const HatebuConverter: Serializer<Hatebu, HatebuJSON> = {
     fromJSON(json) {

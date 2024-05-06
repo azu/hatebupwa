@@ -1,6 +1,6 @@
 import { UseCase } from "almin";
-import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository";
-import { AppSessionRepository, appSessionRepository } from "../infra/repository/AppSessionRepository";
+import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository.js";
+import { AppSessionRepository, appSessionRepository } from "../infra/repository/AppSessionRepository.js";
 
 export const createInitializeSystemUseCase = () => {
     return new InitializeSystemUseCase({

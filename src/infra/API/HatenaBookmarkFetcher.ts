@@ -1,9 +1,9 @@
-import { RawHatenaBookmark } from "../../domain/Hatebu/BookmarkItemFactory";
-import { BookmarkDate } from "../../domain/Hatebu/BookmarkDate";
-
+import { RawHatenaBookmark } from "../../domain/Hatebu/BookmarkItemFactory.js";
+import { BookmarkDate } from "../../domain/Hatebu/BookmarkDate.js";
+import format from "date-fns/format";
+// @ts-expect-error no types
+import { parse } from "hatebu-mydata-parser";
 type AsocialBookmarkItem = import("asocial-bookmark").AsocialBookmarkItem;
-const format = require("date-fns/format");
-const parse = require("hatebu-mydata-parser").parse;
 export const fetchHatenaBookmark = (userName: string, sinceTime?: BookmarkDate): Promise<RawHatenaBookmark[]> => {
     // Support asocial-bookmark https://github.com/azu/asocial-bookmark
     // TODO: undocument ways

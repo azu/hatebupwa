@@ -4,18 +4,19 @@
   "description": "Hatena Bookmark search app.",
   "homepage": "https://hatebupwa.netlify.app/",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "npm-run-all build:worker build:react sw:generate",
-    "build:react": "react-scripts build",
-    "build:worker": "webpack --mode production --config webpack.worker.config.js",
+    "build": "vite build",
+    "build:worker": "vite build vite.config.worker.js",
     "eject": "react-scripts eject",
-    "start": "npm-run-all build:worker start:*",
+    "start": "vite",
     "start:react": "react-scripts start",
     "test": "react-scripts test --env=node",
     "sw:generate": "workbox generateSW workbox-config.js",
     "package": "node tools/package-app.js",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,css}\"",
-    "prepare": "git config --local core.hooksPath .githooks"
+    "prepare": "git config --local core.hooksPath .githooks",
+    "dev": "vite"
   },
   "prettier": {
     "singleQuote": false,
@@ -56,7 +57,7 @@
   },
   "devDependencies": {
     "@types/jest": "^22.2.2",
-    "@types/node": "^9.6.2",
+    "@types/node": "^20.11.5",
     "@types/react": "16.8.24",
     "@types/react-dom": "16.8.5",
     "express": "^4.16.3",
@@ -67,14 +68,14 @@
     "prettier": "^2.4.1",
     "ts-loader": "^6.0.2",
     "typescript": "^3.5.1",
-    "webpack": "4.29.6",
-    "webpack-cli": "^3.3.6",
-    "workbox-cli": "^3.1.0"
+    "workbox-cli": "^3.1.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "vite": "^5.1.1",
+    "vite-tsconfig-paths": "^4.3.1"
   },
   "resolutions": {
     "@types/react": "16.3.8",
-    "@types/react-dom": "16.0.5",
-    "webpack": "4.29.6"
+    "@types/react-dom": "16.0.5"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,css}": [

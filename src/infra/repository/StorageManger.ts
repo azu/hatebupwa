@@ -1,7 +1,7 @@
 // MIT © 2017 azu
-import * as localForage from "localforage";
-
-const memoryStorageDriver = require("localforage-memoryStorageDriver");
+import localForage from "localforage";
+// @ts-expect-error no types
+import memoryStorageDriver from "localforage-memoryStorageDriver";
 
 export class StorageManger {
     currentDriver?: string;
