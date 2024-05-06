@@ -29,9 +29,16 @@ function setEnv(mode: string) {
     Object.assign(process.env, loadEnv(mode, ".", ["REACT_APP_", "NODE_ENV", "PUBLIC_URL"]));
     process.env.NODE_ENV ||= mode;
     const { homepage } = JSON.parse(readFileSync("package.json", "utf-8"));
-    process.env.PUBLIC_URL ||= homepage
-        ? `${homepage.startsWith("http") || homepage.startsWith("/") ? homepage : `/${homepage}`}`.replace(/\/$/, "")
-        : "";
+    if (process.env.DEPLOY_PRIME_URL) {
+        process.env.PUBLIC_URL ||= process.env.DEPLOY_PRIME_URL;
+    } else {
+        process.env.PUBLIC_URL ||= homepage
+            ? `${homepage.startsWith("http") || homepage.startsWith("/") ? homepage : `/${homepage}`}`.replace(
+                  /\/$/,
+                  ""
+              )
+            : "";
+    }
 }
 
 // Expose `process.env` environment variables to your client code
