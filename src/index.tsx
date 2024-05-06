@@ -5,16 +5,19 @@ import { App } from "./container/App";
 import { Provider } from "./Context";
 
 const cssFiles = import.meta.glob("./**/*.css");
-for (const path in cssFiles) {
-    cssFiles[path]();
-}
+const promises: Promise<void>[] = Object.entries(cssFiles).map(([path, loader]) => {
+    return loader();
+});
+
 // Register icons and pull the fonts from the default SharePoint cdn:
 
 initializeIcons();
 
-ReactDOM.render(
-    <Provider>
-        <App />
-    </Provider>,
-    document.getElementById("root") as HTMLElement
-);
+Promise.all(promises).then(() => {
+    ReactDOM.render(
+        <Provider>
+            <App />
+        </Provider>,
+        document.getElementById("root") as HTMLElement
+    );
+});

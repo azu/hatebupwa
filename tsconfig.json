@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "build/dist",
     "module": "esnext",
-    "target": "es2015",
+    "target": "ES2022",
     "lib": [
       "esnext",
       "dom"
@@ -10,7 +10,7 @@
     "sourceMap": true,
     "allowJs": true,
     "jsx": "preserve",
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
