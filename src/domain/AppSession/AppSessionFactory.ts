@@ -1,4 +1,4 @@
-import { AppSession, AppSessionIdentifier } from "./AppSession";
+import { AppSession, AppSessionIdentifier } from "./AppSession.js";
 import { ulid } from "ulid";
 
 export const createAppSession = () => {

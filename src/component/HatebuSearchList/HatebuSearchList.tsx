@@ -11,11 +11,12 @@ import {
 import * as Comlink from "comlink";
 import { HatebuSearchListItem } from "../../container/SearchContainer/SearchContainerStore";
 import { KeyboardEvent } from "react";
-
-const format = require("date-fns/format");
-const debouncePromise = require("debounce-promise");
-const Highlighter = require("react-highlight-words");
-
+import format from "date-fns/format";
+// @ts-expect-error: no types
+import debouncePromise from "debounce-promise";
+// @ts-expect-error: no types
+import Highlighter from "react-highlight-words";
+import FilterWorker from "../../../workers/filter?worker";
 export interface HatebuSearchListProps {
     autoFocus: boolean;
     items: HatebuSearchListItem[];
@@ -80,7 +81,7 @@ export class HatebuSearchList extends React.PureComponent<HatebuSearchListProps,
     private workerAPI!: import("../../../workers/filter").WorkerAPI;
 
     componentDidMount() {
-        this.filterWorker = new Worker(process.env.PUBLIC_URL + "/workers/filter.js");
+        this.filterWorker = new FilterWorker();
         this.workerAPI = Comlink.wrap(this.filterWorker);
         if (this.props.autoFocus) {
             this.focus();

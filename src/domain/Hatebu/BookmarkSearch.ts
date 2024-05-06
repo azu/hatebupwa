@@ -1,7 +1,7 @@
-import { BookmarkItem } from "./BookmarkItem";
-
-const memoize = require("micro-memoize").default;
-const regexCombiner = require("regex-combiner");
+import { BookmarkItem } from "./BookmarkItem.js";
+import memoize from "micro-memoize";
+// @ts-expect-error no type definition
+import regexCombiner from "regex-combiner";
 
 const stringifyBookmarkItem = (bookmark: BookmarkItem): string => {
     return `${bookmark.props.title}\t${bookmark.props.url}\t${

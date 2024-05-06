@@ -1,6 +1,6 @@
 import { Payload, Store } from "almin";
-import { HatebuRepository } from "../../infra/repository/HatebuRepository";
-import { SwitchCurrentHatebuUserUseCasePayload } from "../../use-case/SwitchCurrentHatebuUserUseCase";
+import { HatebuRepository } from "../../infra/repository/HatebuRepository.js";
+import { SwitchCurrentHatebuUserUseCasePayload } from "../../use-case/SwitchCurrentHatebuUserUseCase.js";
 
 export interface UserFormContainerState {
     name?: string;

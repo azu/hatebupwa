@@ -1,5 +1,5 @@
 import { Entity, Identifier, Serializer } from "ddd-base";
-import { Hatebu, HatebuIdentifier } from "../Hatebu/Hatebu";
+import { Hatebu, HatebuIdentifier } from "../Hatebu/Hatebu.js";
 
 export const AppSessionConverter: Serializer<AppSession, AppSessionJSON> = {
     toJSON(entity) {

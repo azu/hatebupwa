@@ -1,6 +1,6 @@
 import { NullableRepository } from "ddd-base";
-import { Hatebu, HatebuConverter, HatebuIdentifier, HatebuJSON } from "../../domain/Hatebu/Hatebu";
-import { createStorageInstance } from "./StorageManger";
+import { Hatebu, HatebuConverter, HatebuIdentifier, HatebuJSON } from "../../domain/Hatebu/Hatebu.js";
+import { createStorageInstance } from "./StorageManger.js";
 
 export class HatebuRepository extends NullableRepository<Hatebu> {
     private storage: LocalForage;

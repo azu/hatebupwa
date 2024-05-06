@@ -1,7 +1,7 @@
 import { Payload, Store } from "almin";
-import { HatebuRepository } from "../../infra/repository/HatebuRepository";
-import { BookmarkItem } from "../../domain/Hatebu/BookmarkItem";
-import { SwitchCurrentHatebuUserUseCasePayload } from "../../use-case/SwitchCurrentHatebuUserUseCase";
+import { HatebuRepository } from "../../infra/repository/HatebuRepository.js";
+import { BookmarkItem } from "../../domain/Hatebu/BookmarkItem.js";
+import { SwitchCurrentHatebuUserUseCasePayload } from "../../use-case/SwitchCurrentHatebuUserUseCase.js";
 
 export interface HatebuSearchListItem extends BookmarkItem {}
 

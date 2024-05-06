@@ -3,7 +3,7 @@ import {
     FailToFetchHatenaBookmarkPayload,
     FinishFetchHatenaBookmarkPayload,
     StartFetchHatenaBookmarkPayload
-} from "../use-case/hatebu-api/FetchHatenaBookmarkPayload";
+} from "../use-case/hatebu-api/FetchHatenaBookmarkPayload.js";
 
 export interface AppState {
     isFetching: boolean;

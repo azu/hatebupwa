@@ -1,10 +1,10 @@
 import { Context, StoreGroup } from "almin";
 import { createReactContext } from "@almin/react-context";
-import { UserFormContainerStore } from "./container/UserFormContainer/UserFormContainerStore";
-import { SearchContainerStore } from "./container/SearchContainer/SearchContainerStore";
+import { UserFormContainerStore } from "./container/UserFormContainer/UserFormContainerStore.js";
+import { SearchContainerStore } from "./container/SearchContainer/SearchContainerStore.js";
 import { AlminLogger } from "almin-logger";
-import { hatebuRepository } from "./infra/repository/HatebuRepository";
-import { AppStore } from "./container/AppStore";
+import { hatebuRepository } from "./infra/repository/HatebuRepository.js";
+import { AppStore } from "./container/AppStore.js";
 
 export const AppStoreGroup = new StoreGroup({
     userFormContainer: new UserFormContainerStore({

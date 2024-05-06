@@ -1,5 +1,5 @@
-import { BookmarkItem } from "./BookmarkItem";
-import { BookmarkDate } from "./BookmarkDate";
+import { BookmarkItem } from "./BookmarkItem.js";
+import { BookmarkDate } from "./BookmarkDate.js";
 
 export type RawHatenaBookmark = {
     title: string;

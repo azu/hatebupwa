@@ -1,9 +1,11 @@
 import { UseCase } from "almin";
-import { createSwitchCurrentHatebuUserUseCase } from "./SwitchCurrentHatebuUserUseCase";
-import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository";
-import { AppSessionRepository, appSessionRepository } from "../infra/repository/AppSessionRepository";
+import { createSwitchCurrentHatebuUserUseCase } from "./SwitchCurrentHatebuUserUseCase.js";
+import { HatebuRepository, hatebuRepository } from "../infra/repository/HatebuRepository.js";
+import { AppSessionRepository, appSessionRepository } from "../infra/repository/AppSessionRepository.js";
 
-const debug = require("debug")("hatebupwa");
+import debug0 from "debug";
+
+const debug = debug0("hatebupwa");
 
 export const createRestoreLastSessionUseCase = () => {
     return new RestoreLastSessionUseCase({

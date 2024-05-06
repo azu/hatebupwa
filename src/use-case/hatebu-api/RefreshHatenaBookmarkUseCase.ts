@@ -1,14 +1,16 @@
 import { UseCase } from "almin";
-import { fetchHatenaBookmark } from "../../infra/API/HatenaBookmarkFetcher";
-import { HatebuRepository, hatebuRepository } from "../../infra/repository/HatebuRepository";
-import { convertItems } from "../../domain/Hatebu/BookmarkItemFactory";
+import { fetchHatenaBookmark } from "../../infra/API/HatenaBookmarkFetcher.js";
+import { HatebuRepository, hatebuRepository } from "../../infra/repository/HatebuRepository.js";
+import { convertItems } from "../../domain/Hatebu/BookmarkItemFactory.js";
 import {
     FailToFetchHatenaBookmarkPayload,
     FinishFetchHatenaBookmarkPayload,
     StartFetchHatenaBookmarkPayload
-} from "./FetchHatenaBookmarkPayload";
+} from "./FetchHatenaBookmarkPayload.js";
 
-const debug = require("debug")("hatebupwa");
+import debug0 from "debug";
+
+const debug = debug0("hatebupwa");
 export const createRefreshHatenaBookmarkUseCase = () => {
     return new RefreshHatenaBookmarkUseCase({
         hatebuRepository
